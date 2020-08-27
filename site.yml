@@ -1,0 +1,29 @@
+---
+- name: 'AWS Resource Inventory Playbook'
+  hosts: 'localhost'
+  gather_facts: false
+
+  vars_files:
+    - 'aws_keys.yml'
+
+  # Input parameter value
+  vars_prompt:
+    - name: "parameter_value"
+      prompt: |
+        !!! Please select an AWS resource !!! 
+          - [ all ]
+          - [ vpc ]
+          - [ ec2 ]
+          - [ s3  ]
+          - [ sg  ]
+          - [ rds ]
+      private: false
+
+  # AWS inventory roles
+  roles:
+    - { role: 'vpc',  tags: [ all, vpc ],  when: parameter_value == 'all' or parameter_value == 'vpc' }
+    - { role: 'ec2',  tags: [ all, ec2 ],  when: parameter_value == 'all' or parameter_value == 'ec2' }
+    - { role: 's3',   tags: [ all, s3 ],   when: parameter_value == 'all' or parameter_value == 's3'  }
+    - { role: 'sg',   tags: [ all, sg ],   when: parameter_value == 'all' or parameter_value == 'sg'  }
+    - { role: 'rds',  tags: [ all, rds ],  when: parameter_value == 'all' or parameter_value == 'rds' }
+

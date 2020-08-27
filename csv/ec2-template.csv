@@ -1,0 +1,32 @@
+Number,EC2 Name,Instance ID,Instance Type,OS,Private IP,Public IP,EBS Volume,Availability Zone
+      1, SSMLinuxInstance
+      1, SSMWindowsInstance
+      1, aws-cloud9-ResizingImages-331391f2ea37441cabcbd681ec2195aa
+      1, template1
+      1, SSMLinuxInstance_priv
+      1, SSM_Consol_host
+        2, SSMLinuxInstance
+      2, SSMWindowsInstance
+      2, aws-cloud9-ResizingImages-331391f2ea37441cabcbd681ec2195aa
+      2, template1
+      2, SSMLinuxInstance_priv
+      2, SSM_Consol_host
+        3, SSMLinuxInstance
+      3, SSMWindowsInstance
+      3, aws-cloud9-ResizingImages-331391f2ea37441cabcbd681ec2195aa
+      3, template1
+      3, SSMLinuxInstance_priv
+      3, SSM_Consol_host
+        4, SSMLinuxInstance
+      4, SSMWindowsInstance
+      4, aws-cloud9-ResizingImages-331391f2ea37441cabcbd681ec2195aa
+      4, template1
+      4, SSMLinuxInstance_priv
+      4, SSM_Consol_host
+        5, SSMLinuxInstance
+      5, SSMWindowsInstance
+      5, aws-cloud9-ResizingImages-331391f2ea37441cabcbd681ec2195aa
+      5, template1
+      5, SSMLinuxInstance_priv
+      5, SSM_Consol_host
+  
