@@ -1,9 +1,5 @@
-Number,EC2 Name,Instance ID,Instance Type,OS,Private IP,Public IP,EBS Volume,Availability Zone
-{% set count = 0 %}
-{% for i in range(1,6) %}
-  {% for x in aws_ec2_name %}
-    {% if count += 1 %} 
-    {{ i}} {{ x }}
-    {% endif %}
-  {% endfor %}
+{# Header #}
+Number,EC2 Name,Instance ID,Instance Type,Private IP,AMI ID,EBS ID,Availability Zone
+{% for i in range(aws_ec2_name|length) %}
+{{ loop.index }},{{ aws_ec2_name[i] }},{{ aws_instance_id[i] }},{{ aws_instance_type[i] }},{{ aws_private_ip[i] }},{{ aws_ami_id[i] }},{{ aws_ebs_id[i] }},{{ aws_availability_zone[i] }}
 {% endfor %}

@@ -1,10 +1,10 @@
 ---
-- name: 'AWS Resource Inventory Playbook'
+- name: 'MAIN | AWS Resource Inventory Playbook'
   hosts: 'localhost'
   gather_facts: false
 
   vars_files:
-    - 'aws_keys.yml'
+    - './aws_keys.yml'
 
   # Input parameter value
   vars_prompt:
