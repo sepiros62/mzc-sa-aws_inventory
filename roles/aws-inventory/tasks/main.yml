@@ -10,3 +10,6 @@
 - import_tasks: 's3.yml'
   tags: "{{ parameter_value }}"
   when: parameter_value == 's3'
+
+- import_tasks: 'slack.yml'
+  tags: slack
