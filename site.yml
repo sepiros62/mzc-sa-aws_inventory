@@ -4,7 +4,7 @@
   gather_facts: true
 
   vars_files:
-    - './aws_keys.yml'
+    - './secret.yml'
 
   # Input parameter value
   vars_prompt:

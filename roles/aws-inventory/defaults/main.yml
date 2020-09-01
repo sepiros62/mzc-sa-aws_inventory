@@ -1,2 +1,6 @@
 ---
-# defaults file for aws-inventory
+# Slack Variable
+slack_file_path: '{{ role_path }}/files'
+slack_initial_comment: ':file_folder: *[File] AWS Resource 리소스 파일*'
+slack_channels: '#aws_test_notice'
+slack_upload_api: 'https://slack.com/api/files.upload'

@@ -1,0 +1,13 @@
+- name: 'Upload AWS Resource files to Slack'
+  shell: |
+    curl \
+    -F file=@{{ slack_file_path }}/s3-template.xlsx \
+    -F 'initial_comment={{ slack_initial_comment }}' \
+    -F channels={{ slack_channels }} \
+    -H 'Authorization: Bearer {{ slack_authorization_token }}' \
+    {{ slack_upload_api }}
+  changed_when: false
+
+  ##  Reference ##
+  # https://api.slack.com/methods/files.upload
+  # https://api.slack.com/messaging/files/uploading
