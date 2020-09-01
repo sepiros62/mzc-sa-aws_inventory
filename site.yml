@@ -1,14 +1,19 @@
 ---
 - name: 'MAIN | AWS Resource Inventory Playbook'
   hosts: 'localhost'
-  gather_facts: true
+  gather_facts: false
 
+  # Environment Variable
+  vars:
+    - ansible_python_interpreter: '/bin/python'
+
+  # Secret Variables File
   vars_files:
     - './secret.yml'
 
   # Input parameter value
   vars_prompt:
-    - name: "parameter_value"
+    - name: 'parameter_value'
       prompt: |
         !!! Please select an AWS resource !!!
           - [ all ]
@@ -18,6 +23,12 @@
           - [ sg  ]
           - [ rds ]
       private: false
+
+  # Pre Requisite Task
+  pre_tasks:
+    - include_role:
+        name: 'aws-inventory'
+        tasks_from: 'check'
 
   # AWS inventory roles
   roles:

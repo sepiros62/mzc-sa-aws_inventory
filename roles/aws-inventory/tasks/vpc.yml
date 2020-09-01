@@ -5,12 +5,14 @@
         aws_access_key: "{{ aws_access_key }}"
         aws_secret_key: "{{ aws_secret_key }}"
       register: 'vpc_net_result'
+      no_log: true
 
     - name: 'VPC | Gather information about Subnet in AWS'
       ec2_vpc_subnet_info:
         aws_access_key: "{{ aws_access_key }}"
         aws_secret_key: "{{ aws_secret_key }}"
       register: 'vpc_subnet_result'
+      no_log: true
 
     - name: 'VPC | Gather information about RouteTable in AWS'
       ec2_vpc_route_table_info:
@@ -18,6 +20,7 @@
         aws_secret_key: "{{ aws_secret_key }}"
         region: "{{ aws_region }}"
       register: 'vpc_route_result'
+      no_log: true
 
     - name: 'VPC | Create variable about VPC, Subnet, RouteTable in AWS'
       set_fact:

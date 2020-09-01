@@ -1,0 +1,20 @@
+---
+- name: 'Check Pre Python Package'
+  shell: |
+    pip list | grep {{ item }}
+  changed_when: false
+  ignore_errors: true
+  with_items:
+    - boto
+    - boto3
+    - botocore
+    - openpyxl
+  register: check_result
+
+- name: ''
+  assert:
+    that:
+      - check_result is succeeded
+      - check_result is defined
+    fail_msg: 'FAILED | Check it out -> pip install -r requirements.txt'
+    success_msg: 'SUCCESS | Python package is installed'
