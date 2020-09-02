@@ -1,0 +1,5 @@
+{# Header #}
+Number,Domain Name,Record Count
+{% for i in range(aws_route53_domain|length) %}
+{{ loop.index }},{{ aws_route53_domain[i] }},{{aws_route53_record_count[i] }}
+{% endfor %}

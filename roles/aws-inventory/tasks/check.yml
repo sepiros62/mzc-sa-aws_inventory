@@ -1,5 +1,10 @@
 ---
-- name: 'Check Pre Python Package'
+- name: 'MAIN | Check Python Package Manager'
+  yum:
+    name: 'python-pip'
+    state: 'present'
+
+- name: 'MAIN | Check Python Package list'
   shell: |
     pip list | grep {{ item }}
   changed_when: false

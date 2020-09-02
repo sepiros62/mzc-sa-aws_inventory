@@ -1,15 +1,23 @@
 ---
-- import_tasks: 'vpc.yml'
-  tags: "{{ parameter_value }}"
-  when: parameter_value == 'vpc'
-
-- import_tasks: 'ec2.yml'
-  tags: "{{ parameter_value }}"
-  when: parameter_value == 'ec2'
+#- import_tasks: 'cf.yml'
+#  tags: "{{ parameter_value }}"
+#  when: parameter_value == 'cf'
 
 - import_tasks: 's3.yml'
   tags: "{{ parameter_value }}"
   when: parameter_value == 's3'
 
-- import_tasks: 'slack.yml'
-  tags: slack
+- import_tasks: 'ec2.yml'
+  tags: "{{ parameter_value }}"
+  when: parameter_value == 'ec2'
+
+- import_tasks: 'vpc.yml'
+  tags: "{{ parameter_value }}"
+  when: parameter_value == 'vpc'
+
+- import_tasks: 'route53.yml'
+  tags: "{{ parameter_value }}"
+  when: parameter_value == 'route53'
+
+#- import_tasks: 'slack.yml'
+#  tags: slack
