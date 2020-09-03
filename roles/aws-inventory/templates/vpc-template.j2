@@ -9,7 +9,6 @@ Number,Subnet Name,Subnet ID,IPv4 CIDR,Avaiilability Zone
 {{ loop.index }},{{ aws_subnet_name }},{{ aws_subnet_id[i] }},{{ aws_subnet_cidr[i] }},{{ aws_subnet_az[i] }}
 {% endfor %}
 
-
 Number,RouteTable Name, RouteTAble ID,Destination, Target
 {% for i in range(aws_route_id|length) %}
 {{ loop.index
