@@ -17,10 +17,11 @@
       prompt: |
         !!! Please select an AWS resource !!!
           - [ all ]
-          - [ vpc ]
-          - [ ec2 ]
+          - [ cf  ]
           - [ s3  ]
           - [ sg  ]
+          - [ vpc ]
+          - [ ec2 ]
           - [ rds ]
       private: false
 

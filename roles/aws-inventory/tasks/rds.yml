@@ -4,20 +4,31 @@
       rds_instance_info:
         aws_access_key: "{{ aws_access_key }}"
         aws_secret_key: "{{ aws_secret_key }}"
+        aws_region: "{{ aws_region }}"
       register: 'rds_instance_result'
       no_log: false
 
     - name: 'RDS | Create variable about RDS Instance in AWS'
       set_fact:
-        aws_RDS_instance: "{{ rds_instance_result }}"
-        #aws_RDS_instance: "{{ rds_instance_result | json_query('buckets[*].name') }}"
+        aws_rds_instance_az: "{{ rds_instance_result | json_query('instances[*].availability_zone') }}"
+        aws_rds_instance_name: "{{ rds_instance_result | json_query('instances[*].db_cluster_identifier') }}"
+        aws_rds_instance_class: "{{ rds_instance_result | json_query('instances[*].db_instance_class') }}"
+        aws_rds_engine: "{{ rds_instance_result | json_query('instances[*].engine') }}"
+        aws_rds_engin_version: "{{ rds_instance_result | json_query('instances[*].engine_version') }}"
+        aws_rds_db_sg: "{{ rds_instance_result | json_query('instances[*].db_security_groups[*].vpc_security_group_id') }}"
+        aws_rds_db_name: "{{ rds_instance_result | json_query('instances[*].db_name') }}"
+        aws_rds_db_user: "{{ rds_instance_result | json_query('instances[*].master_username') }}"
+        aws_rds_db_port: "{{ rds_instance_result | json_query('instances[*].endpoirnt.port') }}"
+        aws_rds_db_upgrade: "{{ rds_instance_result | json_query('instances[*].auto_minor_version_upgrade') }}"
+        aws_rds_db_endpoint: "{{ rds_instance_result | json_query('instances[*].endpoint.address') }}"
+        aws_rds_db_encrypion: "{{ rds_instance_result | json_query('instances[*].storage_encrypted') }}"
 
-    # - name: 'RDS | Create Jinja template about RDS Instance in AWS'
-    #   template:
-    #     src: "{{ role_path }}/templates/RDS-template.j2"
-    #     dest: "{{ role_path }}/files/RDS-template.csv"
-    #     mode: '0644'
-    #     force: true
+     - name: 'RDS | Create Jinja template about RDS Instance in AWS'
+       template:
+         src: "{{ role_path }}/templates/rds-template.j2"
+         dest: "{{ role_path }}/files/rds-template.csv"
+         mode: '0644'
+         force: true
 
     - name: 'Show success message'
       debug:
