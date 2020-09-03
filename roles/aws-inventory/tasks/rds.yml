@@ -1,0 +1,35 @@
+---
+- block:
+    - name: 'RDS | Gather information about RDS Instance in AWS'
+      rds_instance_info:
+        aws_access_key: "{{ aws_access_key }}"
+        aws_secret_key: "{{ aws_secret_key }}"
+      register: 'rds_instance_result'
+      no_log: false
+
+    - name: 'RDS | Create variable about RDS Instance in AWS'
+      set_fact:
+        aws_RDS_instance: "{{ rds_instance_result }}"
+        #aws_RDS_instance: "{{ rds_instance_result | json_query('buckets[*].name') }}"
+
+    # - name: 'RDS | Create Jinja template about RDS Instance in AWS'
+    #   template:
+    #     src: "{{ role_path }}/templates/RDS-template.j2"
+    #     dest: "{{ role_path }}/files/RDS-template.csv"
+    #     mode: '0644'
+    #     force: true
+
+    - name: 'Show success message'
+      debug:
+        msg:
+          - '================'
+          - '= TASK SUCCESS ='
+          - '================'
+
+  rescue:
+    - name: 'Show failure message'
+      debug:
+        msg:
+          - '================'
+          - '= TASK FAILURE ='
+          - '================'
