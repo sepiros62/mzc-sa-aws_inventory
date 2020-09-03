@@ -11,6 +11,10 @@
   tags: "{{ parameter_value }}"
   when: parameter_value == 'ec2'
 
+- import_tasks: 'rds.yml'
+  tags: "{{ parameter_value }}"
+  when: parameter_value == 'rds'
+
 - import_tasks: 'vpc.yml'
   tags: "{{ parameter_value }}"
   when: parameter_value == 'vpc'
