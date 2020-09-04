@@ -7,7 +7,7 @@ Number,RDS Instance,Engine,Engine Version,Availability Zone,DB instance Class
 Number,Master User Name,Port,Encryption,Minor Upgrade,Security Group,Endpoint Name
 {% for i in range(aws_rds_instance_name|length) %}
 {% if aws_rds_db_name is defined and aws_rds_db_name != [] %}
-{{ loop.index }},{{ aws_rds_db_name }},{{ aws_rds_db_user[i] }},{{ aws_rds_db_port[i] }},{{ aws_rds_db_encrypion[i] }},{{ aws_rds_db_upgrade[i] }},{{ aws_rds_db_sg[i] }},{{ aws_rds_db_endpoint[i] }}
+{{ loop.index }},{{ aws_rds_db_name[i] }},{{ aws_rds_db_user[i] }},{{ aws_rds_db_port[i] }},{{ aws_rds_db_encrypion[i] }},{{ aws_rds_db_upgrade[i] }},{{ aws_rds_db_sg[i] | replace(",", "") }},{{ aws_rds_db_endpoint[i] }}
 {% else %}
 {% set aws_rds_db_name = ' ' %}
 {{ loop.index }},{{ aws_rds_db_name }},{{ aws_rds_db_user[i] }},{{ aws_rds_db_port[i] }},{{ aws_rds_db_encrypion[i] }},{{ aws_rds_db_upgrade[i] }},{{ aws_rds_db_sg[i] }},{{ aws_rds_db_endpoint[i] }}
