@@ -6,7 +6,7 @@
         aws_secret_key: "{{ aws_secret_key }}"
         aws_region: "{{ aws_region }}"
       register: 'rds_instance_result'
-      no_log: false
+      no_log: true
 
     - name: 'RDS | Create variable about RDS Instance in AWS'
       set_fact:
