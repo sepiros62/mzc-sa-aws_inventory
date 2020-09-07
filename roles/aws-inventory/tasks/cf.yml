@@ -4,14 +4,14 @@
       cloudfront_info:
         aws_access_key: "{{ aws_access_key }}"
         aws_secret_key: "{{ aws_secret_key }}"
-        summary: true
+        summary: false
       register: 'cf_distribution_result'
       no_log: true
 
     - name: 'CloudFront | Create variable about Distributions in AWS'
       set_fact:
-        aws_cf_id: "{{ cf_distribution_result | json_query('summary.distributions[*].Id') }}"
-        aws_cf_domain: "{{ cf_distribution_result | json_query('distributions.DomainName') }}"
+        aws_cf_id: "{{ cf_distribution_result | json_query('cloudfront.summary.distributions[*].Id') }}"
+        aws_cf_domain: "{{ cf_distribution_result | json_query('cloudfront.summary.distributions[*].DomainName') }}"
 
     - name: 'CloudFront | Create Jinja template about Route in AWS'
       template:

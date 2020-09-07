@@ -1,27 +1,39 @@
 ---
-#- import_tasks: 'cf.yml'
-#  tags: "{{ parameter_value }}"
-#  when: parameter_value == 'cf'
+- import_tasks: 'cf.yml'
+  tags: "{{ parameter_value }}"
+  when:
+    - parameter_value == 'cf' or
+      parameter_value == 'all'
 
 - import_tasks: 's3.yml'
   tags: "{{ parameter_value }}"
-  when: parameter_value == 's3'
+  when:
+    - parameter_value == 's3' or
+      parameter_value == 'all'
 
 - import_tasks: 'ec2.yml'
   tags: "{{ parameter_value }}"
-  when: parameter_value == 'ec2'
+  when:
+    - parameter_value == 'ec2' or
+      parameter_value == 'all'
 
 - import_tasks: 'rds.yml'
   tags: "{{ parameter_value }}"
-  when: parameter_value == 'rds'
+  when:
+    - parameter_value == 'rds' or
+      parameter_value == 'all'
 
 - import_tasks: 'vpc.yml'
   tags: "{{ parameter_value }}"
-  when: parameter_value == 'vpc'
+  when:
+    - parameter_value == 'vpc' or
+      parameter_value == 'all'
 
 - import_tasks: 'route53.yml'
   tags: "{{ parameter_value }}"
-  when: parameter_value == 'route53'
+  when:
+    - parameter_value == 'route53' or
+      parameter_value == 'all'
 
 #- import_tasks: 'slack.yml'
 #  tags: slack
