@@ -23,6 +23,7 @@
           - [ vpc ]
           - [ ec2 ]
           - [ rds ]
+          - [ route53 ]
       private: false
 
   # Pre Requisite Task

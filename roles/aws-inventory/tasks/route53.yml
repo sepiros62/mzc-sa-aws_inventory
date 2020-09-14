@@ -6,11 +6,13 @@
         aws_secret_key: "{{ aws_secret_key }}"
         query: 'hosted_zone'
       register: 'route53_zone_result'
-      no_log: true
+      no_log: false
 
     - name: 'ROUTE53 | Create variable about Hosted Zone in AWS'
       set_fact:
+        aws_route53_type: "{{ route53_zone_result | json_query('HostedZones[*].Config.PrivateZone') }}"
         aws_route53_domain: "{{ route53_zone_result | json_query('HostedZones[*].Name') }}"
+        aws_route53_comment: "{{ route53_zone_result | json_query('HostedZones[*].Config.Comment') }}"
         aws_route53_record_count: "{{ route53_zone_result | json_query('HostedZones[*].ResourceRecordSetCount')  }}"
 
     - name: 'ROUTE53 | Create Jinja template about Route in AWS'
