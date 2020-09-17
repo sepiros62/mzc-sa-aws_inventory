@@ -1,7 +1,0 @@
-Number,EC2 Name,Instance ID,Instance Type,Private IP,AMI ID,EBS ID,Availability Zone
-1,SSMLinuxInstance,i-0374057ed9b83dcec,t2.micro,10.10.0.191,ami-0e92198843e11ccee,ebs,ap-northeast-2a
-2,SSMWindowsInstance,i-089fa82c7260cbc9c,t2.micro,10.10.0.136,ami-049e67b9661b9ee3e,ebs,ap-northeast-2a
-3,SSMLinuxInstance_priv,i-0193e9edfcb83fc17,t2.micro,10.10.1.148,ami-0e92198843e11ccee,ebs,ap-northeast-2a
-4,SSM_Consol_host,i-0ce527724c24de7a8,t2.micro,10.10.0.119,ami-0e92198843e11ccee,ebs,ap-northeast-2a
-5,aws-cloud9-ResizingImages-331391f2ea37441cabcbd681ec2195aa,i-0271f0c12b35a34bb,t2.micro,172.31.8.248,ami-0e6e31e1770934d24,ebs,ap-northeast-2a
-6,template1,i-0f6abcf10654668e0,t2.micro,172.31.44.235,ami-05438a9ce08100b25,ebs,ap-northeast-2c

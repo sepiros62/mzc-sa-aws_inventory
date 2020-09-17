@@ -16,8 +16,8 @@
 
     - name: 'CloudFront | Create Jinja template about Route in AWS'
       template:
-        src: "{{ role_path }}/templates/cf-template.j2"
-        dest: "{{ role_path }}/files/cf-template.csv"
+        src: "{{ role_path }}/templates/{{ parameter_value }}-template.j2"
+        dest: "{{ role_path }}/files/{{ parameter_value }}-report.csv"
         mode: '0644'
         force: true
 

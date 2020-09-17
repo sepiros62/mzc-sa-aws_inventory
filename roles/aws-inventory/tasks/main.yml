@@ -35,5 +35,8 @@
     - parameter_value == 'route53' or
       parameter_value == 'all'
 
-#- import_tasks: 'slack.yml'
-#  tags: slack
+- import_tasks: 'convert.yml'
+  tags: convert
+
+- import_tasks: 'slack.yml'
+  tags: slack

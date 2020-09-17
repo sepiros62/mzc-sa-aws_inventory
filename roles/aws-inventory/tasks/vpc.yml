@@ -38,8 +38,8 @@
 
     - name: 'VPC | Create Jinja template about VPC in AWS'
       template:
-        src: "{{ role_path }}/templates/vpc-template.j2"
-        dest: "{{ role_path }}/files/vpc-template.csv"
+        src: "{{ role_path }}/templates/{{ parameter_value }}-template.j2"
+        dest: "{{ role_path }}/files/{{ parameter_value }}-report.csv"
         mode: '0644'
         force: true
 

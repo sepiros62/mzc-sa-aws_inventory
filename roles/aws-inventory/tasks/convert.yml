@@ -1,0 +1,9 @@
+- template:
+    src: "{{ role_path }}/templates/csv-to-pdf.j2"
+    dest: "{{ role_path }}/files/csv-to-pdf.py"
+    mode: '0644'
+    force: true
+
+- shell: "python csv-to-pdf.py"
+  args:
+    chdir: "{{ role_path }}/files/"

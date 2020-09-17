@@ -11,4 +11,5 @@ Number,Subnet Name,Subnet ID,IPv4 CIDR,Avaiilability Zone
 
 Number,RouteTable Name, RouteTAble ID,Destination, Target
 {% for i in range(aws_route_id|length) %}
-{{ loop.index
+{{ loop.index }}
+{% endfor %}

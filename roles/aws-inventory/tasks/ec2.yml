@@ -21,8 +21,8 @@
 
     - name: 'EC2 | Create Jinja template about ec2 instances in AWS'
       template:
-        src: "{{ role_path }}/templates/ec2-template.j2"
-        dest: "{{ role_path }}/files/ec2-template.csv"
+        src: "{{ role_path }}/templates/{{ parameter_value }}-template.j2"
+        dest: "{{ role_path }}/files/{{ parameter_value }}-report.csv"
         mode: '0644'
         force: true
 

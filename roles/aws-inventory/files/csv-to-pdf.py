@@ -1,42 +1,66 @@
-import csv
 from fpdf import FPDF
 
-with open('test2.csv', newline='') as f:
-        reader = csv.reader(f)
-#       pdf = FPDF(orientation = 'L', unit = 'mm', format='A3')
-        pdf = FPDF('L','mm', (200, 500))
-        pdf.add_page()
-        page_width = pdf.w - 2 * pdf.l_margin
+title = ' AWS Infrastructure Resource '
 
-        pdf.set_font('Times','B',20.0)
-        pdf.cell(page_width, 0.0, 'AWS Resource Data', align='C')
-        pdf.ln(10)
+class PDF(FPDF):
+    def header(self):
+        # Arial bold 15
+        self.set_font('Arial', 'B', 20)
+        # Calculate width of title and position
+        w = self.get_string_width(title) + 6
+        self.set_x((210 - w) / 2)
+        # Colors of frame, background and text
+        self.set_draw_color(0, 80, 180)
+        self.set_fill_color(230, 230, 0)
+        self.set_text_color(220, 50, 50)
+        # Thickness of frame (1 mm)
+        self.set_line_width(1)
+        # Title
+        self.cell(w, 9, title, 1, 1, 'C', 1)
+        # Line break
+        self.ln(10)
 
-        pdf.set_font('Courier', '', 10)
-        pdf.set_fill_color(153, 153, 153)
+    def footer(self):
+        # Position at 1.5 cm from bottom
+        self.set_y(-15)
+        # Arial italic 8
+        self.set_font('Arial', 'I', 8)
+        # Text color in gray
+        self.set_text_color(128)
+        # Page number
+        self.cell(0, 10, 'Page ' + str(self.page_no()), 0, 0, 'C')
 
-        col_width = page_width/8
+    def chapter_title(self, num, label):
+        # Arial 12
+        self.set_font('Arial', '', 12)
+        # Background color
+        self.set_fill_color(200, 220, 255)
+        # Title
+        self.cell(0, 6, '  AWS  |  %s' % (label), 0, 1, 'L', 1)
+        # Line break
+        self.ln(4)
 
-        pdf.ln(1)
+    def chapter_body(self, name):
+        # Read text file
+        with open(name, 'rb') as fh:
+            txt = fh.read().decode('latin-1')
+        # Times 12
+        self.set_font('Times', '', 12)
+        # Output justified text
+        self.multi_cell(0, 5, txt)
+        # Line break
+        self.ln()
+        # Mention in italics
+        self.set_font('', 'I')
+        self.cell(0, 5, '(end of excerpt)')
 
-        th = pdf.font_size
+    def print_chapter(self, num, title, name):
+        self.add_page()
+        self.chapter_title(num, title)
+        self.chapter_body(name)
 
-        for row in reader:
-        #print(row)
-                pdf.cell(col_width, th, str(row[0]), fill = True, border=1)
-                pdf.cell(col_width, th, row[1], border=1)
-                pdf.cell(col_width, th, row[2], fill = True, border=1)
-                pdf.cell(col_width, th, row[3], border=1)
-                pdf.cell(col_width, th, row[4], fill = True, border=1)
-                pdf.cell(col_width, th, row[5], border=1)
-                pdf.cell(col_width, th, row[6], fill = True, border=1)
-                pdf.cell(col_width, th, row[7], border=1)
-                pdf.ln(th)
-
-        pdf.ln(10)
-
-        pdf.set_font('Times','',14.0)
-        pdf.cell(page_width, 0.0, '- end of report -', align='C')
-
-        pdf.output('test.pdf', 'F')
-[root@awx-server ~]#
+pdf = PDF(orientation = 'L', unit = 'mm', format='A4')
+pdf.set_title(title)
+pdf.set_author('Jaehwan Jeong')
+pdf.print_chapter(1, 'EC2', 'ec2-report.csv')
+pdf.output('ec2-report.pdf', 'F')
