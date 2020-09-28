@@ -1,39 +1,39 @@
 ---
 - import_tasks: 'cf.yml'
-  tags: "{{ parameter_value }}"
+  tags: "{{ resource_type }}"
   when:
-  - parameter_value == 'cf' or
-    parameter_value == 'all'
+  - resource_type == 'cf' or
+    resource_type == 'all'
 
 - import_tasks: 's3.yml'
-  tags: "{{ parameter_value }}"
+  tags: "{{ resource_type }}"
   when:
-    - parameter_value == 's3' or
-      parameter_value == 'all'
+    - resource_type == 's3' or
+      resource_type == 'all'
 
 - import_tasks: 'ec2.yml'
-  tags: "{{ parameter_value }}"
+  tags: "{{ resource_type }}"
   when:
-    - parameter_value == 'ec2' or
-      parameter_value == 'all'
+    - resource_type == 'ec2' or
+      resource_type == 'all'
 
 - import_tasks: 'rds.yml'
-  tags: "{{ parameter_value }}"
+  tags: "{{ resource_type }}"
   when:
-    - parameter_value == 'rds' or
-      parameter_value == 'all'
+    - resource_type == 'rds' or
+      resource_type == 'all'
 
 - import_tasks: 'vpc.yml'
-  tags: "{{ parameter_value }}"
+  tags: "{{ resource_type }}"
   when:
-    - parameter_value == 'vpc' or
-      parameter_value == 'all'
+    - resource_type == 'vpc' or
+      resource_type == 'all'
 
 - import_tasks: 'route53.yml'
-  tags: "{{ parameter_value }}"
+  tags: "{{ resource_type }}"
   when:
-    - parameter_value == 'route53' or
-      parameter_value == 'all'
+    - resource_type == 'route53' or
+      resource_type == 'all'
 
 - import_tasks: 'convert.yml'
   tags: convert

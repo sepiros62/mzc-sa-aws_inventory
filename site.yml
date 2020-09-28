@@ -11,21 +11,6 @@
   vars_files:
     - './secret.yml'
 
-  # Input parameter value
-  vars_prompt:
-    - name: 'parameter_value'
-      prompt: |
-        !!! Please select an AWS resource !!!
-          - [ all ]
-          - [ cf  ]
-          - [ s3  ]
-          - [ sg  ]
-          - [ vpc ]
-          - [ ec2 ]
-          - [ rds ]
-          - [ route53 ]
-      private: false
-
   # Pre Requisite Task
   pre_tasks:
     - include_role:
@@ -34,4 +19,4 @@
 
   # AWS inventory roles
   roles:
-    - { role: 'aws-inventory', when: parameter_value is defined }
+    - { role: 'aws-inventory', when: resource_type is defined }
