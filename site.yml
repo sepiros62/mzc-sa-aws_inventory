@@ -7,10 +7,6 @@
   vars:
     - ansible_python_interpreter: '/bin/python'
 
-  # Secret Variables File
-  vars_files:
-    - './secret.yml'
-
   # Pre Requisite Task
   pre_tasks:
     - include_role:
