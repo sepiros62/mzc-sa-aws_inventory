@@ -8,10 +8,10 @@
     - ansible_python_interpreter: '/bin/python'
 
   # Pre Requisite Task
-  pre_tasks:
-    - include_role:
-        name: 'aws-inventory'
-        tasks_from: 'check'
+#  pre_tasks:
+#    - include_role:
+#        name: 'aws-inventory'
+#        tasks_from: 'check'
 
   # AWS inventory roles
   roles:
