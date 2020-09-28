@@ -62,5 +62,5 @@ class PDF(FPDF):
 pdf = PDF(orientation = 'L', unit = 'mm', format='A4')
 pdf.set_title(title)
 pdf.set_author('Jaehwan Jeong')
-pdf.print_chapter(1, 'EC2', '{{ parameter_value }}-report.csv')
-pdf.output('{{ parameter_value }}-report.pdf', 'F')
+pdf.print_chapter(1, 'EC2', '{{ resource_type }}-report.csv')
+pdf.output('{{ resource_type }}-report.pdf', 'F')
