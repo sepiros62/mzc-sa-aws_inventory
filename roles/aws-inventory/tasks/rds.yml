@@ -26,8 +26,8 @@
 
     - name: 'RDS | Create Jinja template about RDS Instance in AWS'
       template:
-        src: "{{ role_path }}/templates/{{ parameter_value }}-template.j2"
-        dest: "{{ role_path }}/files/{{ parameter_value }}-report.csv"
+        src: "{{ role_path }}/templates/{{ resource_type }}-template.j2"
+        dest: "{{ role_path }}/files/{{ resource_type }}-report.csv"
         mode: '0644'
         force: true
 
