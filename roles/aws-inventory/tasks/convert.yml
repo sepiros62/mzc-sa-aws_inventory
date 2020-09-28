@@ -4,6 +4,6 @@
     mode: '0644'
     force: true
 
-- shell: "python csv-to-pdf.py"
+- shell: "python2 csv-to-pdf.py"
   args:
     chdir: "{{ role_path }}/files/"
