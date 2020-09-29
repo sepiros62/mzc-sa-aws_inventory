@@ -1,5 +1,43 @@
 ---
-- import_tasks: "ec2.yml"
-  tags: "resource_type[0]"
-  when:
-    - resource_type[0] == 'ec2'
+- block:
+    - name: 'CloudFront | Gather information about Distributions in AWS'
+      cloudfront_info:
+          region: "{{ AWS_REGION }}"
+          aws_access_key: "{{ lookup('env','AWS_ACCESS_KEY_ID') }}"
+          aws_secret_key: "{{ lookup('env','AWS_SECRET_ACCESS_KEY') }}"
+        summary: false
+      register: 'cf_distribution_result'
+      no_log: false
+      delegate_to: localhost
+
+    - name: 'CloudFront | Create variable about Distributions in AWS'
+      set_fact:
+        aws_cf_id: "{{ cf_distribution_result | json_query('cloudfront.summary.distributions[*].Id') }}"
+        aws_cf_status: "{{ cf_distribution_result | json_query('cloudfront.summary.distributions[*].Status') }}"
+        aws_cf_domain: "{{ cf_distribution_result | json_query('cloudfront.summary.distributions[*].DomainName') }}"
+      delegate_to: localhost
+
+    - name: 'CloudFront | Create Jinja template about Route in AWS'
+      template:
+        src: "{{ role_path }}/templates/{{ resource_type[3] }}-template.j2"
+        dest: "{{ role_path }}/files/{{ resource_type[3] }}-report.csv"
+        mode: '0644'
+        force: true
+      delegate_to: localhost
+
+    - name: 'Show success message'
+      debug:
+        msg:
+          - '================'
+          - '= TASK SUCCESS ='
+          - '================'
+      delegate_to: localhost
+
+  rescue:
+    - name: 'Show failure message'
+      debug:
+        msg:
+          - '================'
+          - '= TASK FAILURE ='
+          - '================'
+      delegate_to: localhost

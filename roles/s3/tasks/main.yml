@@ -1,5 +1,39 @@
 ---
-- import_tasks: "ec2.yml"
-  tags: "resource_type[0]"
-  when:
-    - resource_type[0] == 'ec2'
+- block:
+    - name: 'S3 | Gather information about s3 bucket in AWS'
+      aws_s3_bucket_info:
+          region: "{{ AWS_REGION }}"
+          aws_access_key: "{{ lookup('env','AWS_ACCESS_KEY_ID') }}"
+          aws_secret_key: "{{ lookup('env','AWS_SECRET_ACCESS_KEY') }}"
+      register: 's3_bucket_result'
+      no_log: false
+      delegate_to: localhost
+
+    - name: 'S3 | Create variable about s3 bucket in AWS'
+      set_fact:
+        aws_s3_bucket: "{{ s3_bucket_result | json_query('buckets[*].name') }}"
+
+    - name: 'S3 | Create Jinja template about s3 bucket in AWS'
+      template:
+        src: "{{ role_path }}/templates/{{ resource_type[2] }}-template.j2"
+        dest: "{{ role_path }}/files/{{ resource_type[2] }}-report.csv"
+        mode: '0644'
+        force: true
+      delegate_to: localhost
+
+    - name: 'Show success message'
+      debug:
+        msg:
+          - '================'
+          - '= TASK SUCCESS ='
+          - '================'
+      delegate_to: localhost
+
+  rescue:
+    - name: 'Show failure message'
+      debug:
+        msg:
+          - '================'
+          - '= TASK FAILURE ='
+          - '================'
+      delegate_to: localhost

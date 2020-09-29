@@ -9,7 +9,6 @@
       no_log: false
       delegate_to: localhost
 
-
     - name: 'EC2 | Create variable about ec2 instances in AWS'
       set_fact:
         aws_ec2_name: "{{ ec2_instance_result | json_query('instances[*].tags.Name') }}"

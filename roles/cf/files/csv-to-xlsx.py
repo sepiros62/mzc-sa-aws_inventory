@@ -70,11 +70,11 @@ ws.title="test"
 
 excel_initialized(ws)
 
-with open('ec2-template.csv', 'r') as f:
+with open('cf-template.csv', 'r') as f:
     reader = csv.reader(f)
     for r, row in enumerate(reader):
         for c, col in enumerate(row):
             for idx, val in enumerate(col.split(',')):
               cell = ws.cell(row=r+1, column=c+1)
               cell.value = val
-    wb.save('ec2-template.xlsx')
+    wb.save('cf-template.xlsx')

@@ -1,5 +1,68 @@
 ---
-- import_tasks: "ec2.yml"
-  tags: "ec2"
-  when:
-    - resource_type[0] == 'ec2'
+- block:
+    - name: 'VPC | Gather information about VPC in AWS'
+      ec2_vpc_net_info:
+        region: "{{ AWS_REGION }}"
+        aws_access_key: "{{ lookup('env','AWS_ACCESS_KEY_ID') }}"
+        aws_secret_key: "{{ lookup('env','AWS_SECRET_ACCESS_KEY') }}"
+      register: 'vpc_net_result'
+      no_log: true
+      delegate_to: localhost
+
+    - name: 'VPC | Gather information about Subnet in AWS'
+      ec2_vpc_subnet_info:
+        region: "{{ AWS_REGION }}"
+        aws_access_key: "{{ lookup('env','AWS_ACCESS_KEY_ID') }}"
+        aws_secret_key: "{{ lookup('env','AWS_SECRET_ACCESS_KEY') }}"
+      register: 'vpc_subnet_result'
+      no_log: true
+      delegate_to: localhost
+
+    - name: 'VPC | Gather information about RouteTable in AWS'
+      ec2_vpc_route_table_info:
+        region: "{{ AWS_REGION }}"
+        aws_access_key: "{{ lookup('env','AWS_ACCESS_KEY_ID') }}"
+        aws_secret_key: "{{ lookup('env','AWS_SECRET_ACCESS_KEY') }}"
+      register: 'vpc_route_result'
+      no_log: true
+      delegate_to: localhost
+
+    - name: 'VPC | Create variable about VPC, Subnet, RouteTable in AWS'
+      set_fact:
+        aws_vpc_name: "{{ vpc_net_result | json_query('vpcs[*].tags.Name') }}"
+        aws_vpc_id: "{{ vpc_net_result | json_query('vpcs[*].vpc_id') }}"
+        aws_vpc_cidr: "{{ vpc_net_result | json_query('vpcs[*].cidr_block') }}"
+        aws_subnet_name: "{{ vpc_subnet_result | json_query('subnets[*].tags.Name') }}"
+        aws_subnet_id: "{{ vpc_subnet_result | json_query('subnets[*].id') }}"
+        aws_subnet_cidr: "{{ vpc_subnet_result | json_query('subnets[*].cidr_block') }}"
+        aws_subnet_az: "{{ vpc_subnet_result | json_query('subnets[*].availability_zone')}}"
+        aws_route_name: "{{ vpc_route_result | json_query('route_tables[*].tags.Name') }}"
+        aws_route_id: "{{ vpc_route_result | json_query('route_tables[*].id') }}"
+        aws_route_cidr: "{{ vpc_route_result | json_query('route_tables[*].routes[*].destination_cidr_block') }}"
+        aws_route_target: "{{ vpc_route_result | json_query('route_tables[*].routes[*].gateway_id') }}"
+      delegate_to: localhost
+
+    - name: 'VPC | Create Jinja template about VPC in AWS'
+      template:
+        src: "{{ role_path }}/templates/{{ resource_type[1] }}-template.j2"
+        dest: "{{ role_path }}/files/{{ resource_type[1] }}-report.csv"
+        mode: '0644'
+        force: true
+      delegate_to: localhost
+
+    - name: 'Show success message'
+      debug:
+        msg:
+          - '================'
+          - '= TASK SUCCESS ='
+          - '================'
+      delegate_to: localhost
+
+  rescue:
+    - name: 'Show failure message'
+      debug:
+        msg:
+          - '================'
+          - '= TASK FAILURE ='
+          - '================'
+      delegate_to: localhost

@@ -1,5 +1,52 @@
 ---
-- import_tasks: "ec2.yml"
-  tags: "resource_type[0]"
-  when:
-    - resource_type[0] == 'ec2'
+- block:
+    - name: 'RDS | Gather information about RDS Instance in AWS'
+      rds_instance_info:
+          region: "{{ AWS_REGION }}"
+          aws_access_key: "{{ lookup('env','AWS_ACCESS_KEY_ID') }}"
+          aws_secret_key: "{{ lookup('env','AWS_SECRET_ACCESS_KEY') }}"
+      register: 'rds_instance_result'
+      no_log: false
+      delegate_to: localhost
+
+    - name: 'RDS | Create variable about RDS Instance in AWS'
+      set_fact:
+        aws_rds_instance_az: "{{ rds_instance_result | json_query('instances[*].availability_zone') }}"
+        aws_rds_instance_name: "{{ rds_instance_result | json_query('instances[*].db_cluster_identifier') }}"
+        aws_rds_instance_class: "{{ rds_instance_result | json_query('instances[*].db_instance_class') }}"
+        aws_rds_engine: "{{ rds_instance_result | json_query('instances[*].engine') }}"
+        aws_rds_engine_version: "{{ rds_instance_result | json_query('instances[*].engine_version') }}"
+        aws_rds_db_sg: "{{ rds_instance_result | json_query('instances[*].vpc_security_groups[*].vpc_security_group_id') }}"
+        aws_rds_db_name: "{{ rds_instance_result | json_query('instances[*].db_instance_identifier') }}"
+        aws_rds_db_user: "{{ rds_instance_result | json_query('instances[*].master_username') }}"
+        aws_rds_db_port: "{{ rds_instance_result | json_query('instances[*].endpoint.port') }}"
+        aws_rds_db_upgrade: "{{ rds_instance_result | json_query('instances[*].auto_minor_version_upgrade') }}"
+        aws_rds_db_endpoint: "{{ rds_instance_result | json_query('instances[*].endpoint.address') }}"
+        aws_rds_db_encrypion: "{{ rds_instance_result | json_query('instances[*].storage_encrypted') }}"
+      ignore_errors: true
+      delegate_to: localhost
+
+    - name: 'RDS | Create Jinja template about RDS Instance in AWS'
+      template:
+        src: "{{ role_path }}/templates/{{ resource_type[4] }}-template.j2"
+        dest: "{{ role_path }}/files/{{ resource_type[4] }}-report.csv"
+        mode: '0644'
+        force: true
+      delegate_to: localhost
+
+    - name: 'Show success message'
+      debug:
+        msg:
+          - '================'
+          - '= TASK SUCCESS ='
+          - '================'
+      delegate_to: localhost
+
+  rescue:
+    - name: 'Show failure message'
+      debug:
+        msg:
+          - '================'
+          - '= TASK FAILURE ='
+          - '================'
+      delegate_to: localhost
