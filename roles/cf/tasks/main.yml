@@ -2,9 +2,9 @@
 - block:
     - name: 'CloudFront | Gather information about Distributions in AWS'
       cloudfront_info:
-          region: "{{ AWS_REGION }}"
-          aws_access_key: "{{ lookup('env','AWS_ACCESS_KEY_ID') }}"
-          aws_secret_key: "{{ lookup('env','AWS_SECRET_ACCESS_KEY') }}"
+        region: "{{ AWS_REGION }}"
+        aws_access_key: "{{ lookup('env','AWS_ACCESS_KEY_ID') }}"
+        aws_secret_key: "{{ lookup('env','AWS_SECRET_ACCESS_KEY') }}"
         summary: false
       register: 'cf_distribution_result'
       no_log: false
