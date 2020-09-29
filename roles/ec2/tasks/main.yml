@@ -1,3 +1,4 @@
 ---
-- import_tasks: ec2.yml
+- import_tasks: 'ec2.yml'
+  tags: 'ec2'
   when: task_type is defined
