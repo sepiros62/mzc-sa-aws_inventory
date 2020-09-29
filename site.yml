@@ -1,6 +1,6 @@
 ---
 - name: 'MAIN | AWS Resource Inventory Playbook'
-  hosts: 'localhost'
+  hosts: localhost
   gather_facts: true
 
   # Environment Variable
@@ -9,12 +9,12 @@
 
   # AWS inventory roles
   roles:
-    - { role: "{{ resource_type[0] | default('') }}", tags: [ 'all', "{{ resource_type[0] | default('') }}" ], when: awx is defined }
-    - { role: "{{ resource_type[1] | default('') }}", tags: [ 'all', "{{ resource_type[1] | default('') }}" ], when: awx is defined }
-    - { role: "{{ resource_type[2] | default('') }}", tags: [ 'all', "{{ resource_type[2] | default('') }}" ], when: awx is defined }
-    - { role: "{{ resource_type[3] | default('') }}", tags: [ 'all', "{{ resource_type[3] | default('') }}" ], when: awx is defined }
-    - { role: "{{ resource_type[4] | default('') }}", tags: [ 'all', "{{ resource_type[4] | default('') }}" ], when: awx is defined }
-    - { role: "{{ resource_type[5] | default('') }}", tags: [ 'all', "{{ resource_type[5] | default('') }}" ], when: awx is defined }
+    - { role: "{{ resource_type[0] | default('') }}", tags: [ all, "{{ resource_type[0] | default('') }}" ], when: awx is defined }
+    - { role: "{{ resource_type[1] | default('') }}", tags: [ all, "{{ resource_type[1] | default('') }}" ], when: awx is defined }
+    - { role: "{{ resource_type[2] | default('') }}", tags: [ all, "{{ resource_type[2] | default('') }}" ], when: awx is defined }
+    - { role: "{{ resource_type[3] | default('') }}", tags: [ all, "{{ resource_type[3] | default('') }}" ], when: awx is defined }
+    - { role: "{{ resource_type[4] | default('') }}", tags: [ all, "{{ resource_type[4] | default('') }}" ], when: awx is defined }
+    - { role: "{{ resource_type[5] | default('') }}", tags: [ all, "{{ resource_type[5] | default('') }}" ], when: awx is defined }
 
   # tasks:
   # - import_tasks: convert.yml
