@@ -1,5 +1,0 @@
----
-- import_tasks: "ec2.yml"
-  tags: "ec2"
-  when:
-    - resource_type[0] == 'ec2'

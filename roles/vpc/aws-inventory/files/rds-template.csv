@@ -1,5 +1,0 @@
-Number,RDS Instance,Engine,Engine Version,Availability Zone,DB instance Class
-1, ,mysql,8.0.17,ap-northeast-2d,db.m5.xlarge
-
-Number,Master User Name,Port,Encryption,Minor Upgrade,Security Group,Endpoint Name
-1,database-2,admin,3306,False,False,[u'sg-18c66f7a'],database-2.crm2u1irmmgo.ap-northeast-2.rds.amazonaws.com

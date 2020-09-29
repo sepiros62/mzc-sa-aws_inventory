@@ -1,5 +1,0 @@
-{# Header #}
-Number,Domain Name,Domain comment,Record Count
-{% for i in range(aws_route53_domain|length) %}
-{{ loop.index }},{{ aws_route53_domain[i] }},{{ aws_route53_type[i] }},{{ aws_route53_comment[i] }}
-{% endfor %}
