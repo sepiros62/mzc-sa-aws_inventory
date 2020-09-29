@@ -5,7 +5,7 @@
         aws_access_key: "{{ aws_access_key }}"
         aws_secret_key: "{{ aws_secret_key }}"
       register: 'ec2_instance_result'
-      no_log: true
+      no_log: false
 
     - name: 'EC2 | Create variable about ec2 instances in AWS'
       set_fact:

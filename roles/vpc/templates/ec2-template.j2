@@ -1,0 +1,5 @@
+{# Header #}
+Number,EC2 Name,Instance ID,Instance Type,Availability Zone,Private IP,Public IP,AMI ID,Root Device Name
+{% for i in range(aws_instance_id|length) %}
+{{ loop.index }},{{ aws_ec2_name[i] }},{{ aws_instance_id[i] }},{{ aws_instance_type[i] }},{{ aws_availability_zone[i] }},{{ aws_private_ip[i] }},{{ aws_public_ip[i] | regex_replace("(\\[|\\]|\\')", "") }},{{ aws_ami_id[i] }},{{ aws_ebs_name[i] }}
+{% endfor %}

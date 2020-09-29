@@ -7,12 +7,18 @@
   vars:
     - ansible_python_interpreter: '/bin/python2'
 
-  # Pre Requisite Task
-#  pre_tasks:
-#    - include_role:
-#        name: 'aws-inventory'
-#        tasks_from: 'check'
-
   # AWS inventory roles
   roles:
-    - { role: 'aws-inventory', when: resource_type is defined }
+    - { role: "resource_type[0] | default('') }}", when: task_type == 'all' or  task_type == 'part'}
+    - { role: "resource_type[1] | default('') }}", when: task_type == 'all' or  task_type == 'part'}
+    - { role: "resource_type[2] | default('') }}", when: task_type == 'all' or  task_type == 'part'}
+    - { role: "resource_type[3] | default('') }}", when: task_type == 'all' or  task_type == 'part'}
+    - { role: "resource_type[4] | default('') }}", when: task_type == 'all' or  task_type == 'part'}
+    - { role: "resource_type[5] | default('') }}", when: task_type == 'all' or  task_type == 'part'}
+
+  # tasks:
+  # - import_tasks: convert.yml
+  #   when: task_type == 'all' or  task_type == 'part'
+
+  # - import_tasks: slack.yml
+  #   when: task_type == 'all' or  task_type == 'part'

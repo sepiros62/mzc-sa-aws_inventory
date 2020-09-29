@@ -1,0 +1,8 @@
+ Number | EC2 Name | Instance ID | Instance Type | Availability Zone | Private IP | Public IP | AMI ID | Root Device Name
+--------------------------------------------------------------------------------------------------------------------------
+ 1 | SSMLinuxInstance | i-0374057ed9b83dcec | t2.micro | ap-northeast-2a | 10.10.0.191 | ,ami-0e92198843e11ccee | ebs
+ 2 | SSMWindowsInstance | i-089fa82c7260cbc9c | t2.micro | ap-northeast-2a | 10.10.0.136 | ,ami-049e67b9661b9ee3e | ebs
+ 3 | SSMLinuxInstance_priv | i-0193e9edfcb83fc17 | t2.micro | ap-northeast-2a | 10.10.1.148 | ,ami-0e92198843e11ccee | ebs
+ 4 | SSM_Consol_host | i-0ce527724c24de7a8 | t2.micro | ap-northeast-2a | 10.10.0.119 | ,ami-0e92198843e11ccee | ebs
+ 5 |  | i-0271f0c12b35a34bb | t2.micro | ap-northeast-2a | 172.31.8.248 | ,ami-0e6e31e1770934d24 | ebs
+--------------------------------------------------------------------------------------------------------------------------

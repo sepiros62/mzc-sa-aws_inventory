@@ -1,0 +1,5 @@
+{# Header #}
+Number,ID,Status,Domain Name
+{% for i in range(aws_cf_id|length) %}
+{{ loop.index }},{{ aws_cf_id[i] }},{{ aws_cf_status[i] }},{{ aws_cf_domain[i] }}
+{% endfor %}

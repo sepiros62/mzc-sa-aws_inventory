@@ -1,0 +1,42 @@
+---
+- block:
+    - name: 'EC2 | Gather information about ec2 instances in AWS'
+      ec2_instance_info:
+        aws_access_key: "{{ aws_access_key }}"
+        aws_secret_key: "{{ aws_secret_key }}"
+      register: 'ec2_instance_result'
+      no_log: false
+
+    - name: 'EC2 | Create variable about ec2 instances in AWS'
+      set_fact:
+        aws_ec2_name: "{{ ec2_instance_result | json_query('instances[*].tags.Name') }}"
+        aws_ebs_name: "{{ ec2_instance_result | json_query('instances[*].root_device_type') }}"
+        aws_ami_id: "{{ ec2_instance_result | json_query('instances[*].image_id') }}"
+        aws_instance_id: "{{ ec2_instance_result | json_query('instances[*].instance_id') }}"
+        aws_instance_sg: "{{ ec2_instance_result | json_query('instances[*].security_groups[*].group_name') }}"
+        aws_instance_type: "{{ ec2_instance_result | json_query('instances[*].instance_type') }}"
+        aws_public_ip: "{{ ec2_instance_result | json_query('instances[*].network_interfaces[*].association.public_ip') }}"
+        aws_private_ip: "{{ ec2_instance_result | json_query('instances[*].private_ip_address') }}"
+        aws_availability_zone: "{{ ec2_instance_result | json_query('instances[*].placement.availability_zone') }}"
+
+    - name: 'EC2 | Create Jinja template about ec2 instances in AWS'
+      template:
+        src: "{{ role_path }}/templates/{{ resource_type[0] }}-template.j2"
+        dest: "{{ role_path }}/files/{{ resource_type[0] }}-report.csv"
+        mode: '0644'
+        force: true
+
+    - name: 'Show success message'
+      debug:
+        msg:
+          - '================'
+          - '= TASK SUCCESS ='
+          - '================'
+
+  rescue:
+    - name: 'Show failure message'
+      debug:
+        msg:
+          - '================'
+          - '= TASK FAILURE ='
+          - '================'
