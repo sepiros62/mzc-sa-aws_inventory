@@ -9,12 +9,12 @@
 
   # AWS inventory roles
   roles:
-    - { role: "resource_type[0] | default('') }}", when: task_type == 'all' or  task_type == 'part'}
-    - { role: "resource_type[1] | default('') }}", when: task_type == 'all' or  task_type == 'part'}
-    - { role: "resource_type[2] | default('') }}", when: task_type == 'all' or  task_type == 'part'}
-    - { role: "resource_type[3] | default('') }}", when: task_type == 'all' or  task_type == 'part'}
-    - { role: "resource_type[4] | default('') }}", when: task_type == 'all' or  task_type == 'part'}
-    - { role: "resource_type[5] | default('') }}", when: task_type == 'all' or  task_type == 'part'}
+    - { role: "{{ resource_type[0] | default('') }}", when: task_type == 'all' or  task_type == 'part'}
+    - { role: "{{ resource_type[1] | default('') }}", when: task_type == 'all' or  task_type == 'part'}
+    - { role: "{{ resource_type[2] | default('') }}", when: task_type == 'all' or  task_type == 'part'}
+    - { role: "{{ resource_type[3] | default('') }}", when: task_type == 'all' or  task_type == 'part'}
+    - { role: "{{ resource_type[4] | default('') }}", when: task_type == 'all' or  task_type == 'part'}
+    - { role: "{{ resource_type[5] | default('') }}", when: task_type == 'all' or  task_type == 'part'}
 
   # tasks:
   # - import_tasks: convert.yml
