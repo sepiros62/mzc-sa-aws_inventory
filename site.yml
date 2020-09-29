@@ -1,6 +1,6 @@
 ---
 - name: 'MAIN | AWS Resource Inventory Playbook'
-  hosts: localhost
+  hosts: 'localhost'
   gather_facts: true
 
   # Environment Variable
