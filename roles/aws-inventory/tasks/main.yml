@@ -1,9 +1,9 @@
 ---
 - import_tasks: "{{ resource_type[0] }}.yml"
-  tags: "{{ resource[0]_type }}"
+  tags: "{{ resource_type[0] }}"
   when:
-    - resource[0]_type == 'ec2' or
-      resource[0]_type == 'all'
+    - resource_type[0] == 'ec2' or
+      resource_type[0] == 'all'
 
 # - import_tasks: 'vpc.yml'
 #   tags: "{{ resource_type }}"
