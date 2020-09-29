@@ -1,4 +1,0 @@
----
-- import_tasks: 'ec2.yml'
-  tags: 'ec2'
-  when: task_type is defined

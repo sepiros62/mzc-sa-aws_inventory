@@ -7,6 +7,8 @@
           aws_secret_key: "{{ lookup('env','AWS_SECRET_ACCESS_KEY') }}"
       register: 'ec2_instance_result'
       no_log: false
+      delegate_to: localhost
+
 
     - name: 'EC2 | Create variable about ec2 instances in AWS'
       set_fact:
@@ -19,6 +21,7 @@
         aws_public_ip: "{{ ec2_instance_result | json_query('instances[*].network_interfaces[*].association.public_ip') }}"
         aws_private_ip: "{{ ec2_instance_result | json_query('instances[*].private_ip_address') }}"
         aws_availability_zone: "{{ ec2_instance_result | json_query('instances[*].placement.availability_zone') }}"
+      delegate_to: localhost
 
     - name: 'EC2 | Create Jinja template about ec2 instances in AWS'
       template:
@@ -26,6 +29,7 @@
         dest: "{{ role_path }}/files/{{ resource_type[0] }}-report.csv"
         mode: '0644'
         force: true
+      delegate_to: localhost
 
     - name: 'Show success message'
       debug:
@@ -33,6 +37,7 @@
           - '================'
           - '= TASK SUCCESS ='
           - '================'
+      delegate_to: localhost
 
   rescue:
     - name: 'Show failure message'
@@ -41,3 +46,4 @@
           - '================'
           - '= TASK FAILURE ='
           - '================'
+      delegate_to: localhost
