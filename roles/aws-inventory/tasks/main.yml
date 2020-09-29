@@ -1,39 +1,39 @@
 ---
-- import_tasks: 'cf.yml'
-  tags: "{{ resource_type }}"
+- import_tasks: "{{ resource_type[0] }}.yml"
+  tags: "{{ resource[0]_type }}"
   when:
-  - resource_type == 'cf' or
-    resource_type == 'all'
+    - resource[0]_type == 'ec2' or
+      resource[0]_type == 'all'
 
-- import_tasks: 's3.yml'
-  tags: "{{ resource_type }}"
-  when:
-    - resource_type == 's3' or
-      resource_type == 'all'
+# - import_tasks: 'vpc.yml'
+#   tags: "{{ resource_type }}"
+#   when:
+#     - resource_type == 'vpc' or
+#       resource_type == 'all'
 
-- import_tasks: 'ec2.yml'
-  tags: "{{ resource_type }}"
-  when:
-    - resource_type == 'ec2' or
-      resource_type == 'all'
+# - import_tasks: 's3.yml'
+#   tags: "{{ resource_type }}"
+#   when:
+#     - resource_type == 's3' or
+#       resource_type == 'all'
 
-- import_tasks: 'rds.yml'
-  tags: "{{ resource_type }}"
-  when:
-    - resource_type == 'rds' or
-      resource_type == 'all'
+# - import_tasks: "{{ resource_type[0] }}.yml"
+#   tags: "{{ resource_type }}"
+#   when:
+#   - resource_type == 'cf' or
+#     resource_type == 'all'
 
-- import_tasks: 'vpc.yml'
-  tags: "{{ resource_type }}"
-  when:
-    - resource_type == 'vpc' or
-      resource_type == 'all'
+# - import_tasks: 'rds.yml'
+#   tags: "{{ resource_type }}"
+#   when:
+#     - resource_type == 'rds' or
+#       resource_type == 'all'
 
-- import_tasks: 'route53.yml'
-  tags: "{{ resource_type }}"
-  when:
-    - resource_type == 'route53' or
-      resource_type == 'all'
+# - import_tasks: 'route53.yml'
+#   tags: "{{ resource_type }}"
+#   when:
+#     - resource_type == 'route53' or
+#       resource_type == 'all'
 
 - import_tasks: 'convert.yml'
   tags: convert
