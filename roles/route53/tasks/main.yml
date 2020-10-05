@@ -2,9 +2,9 @@
 - block:
     - name: 'ROUTE53 | Gather information about Hosted Zone in AWS'
       route53_info:
-          region: "{{ AWS_REGION }}"
-          aws_access_key: "{{ lookup('env','AWS_ACCESS_KEY_ID') }}"
-          aws_secret_key: "{{ lookup('env','AWS_SECRET_ACCESS_KEY') }}"
+        region: "{{ AWS_REGION }}"
+        aws_access_key: "{{ lookup('env','AWS_ACCESS_KEY_ID') }}"
+        aws_secret_key: "{{ lookup('env','AWS_SECRET_ACCESS_KEY') }}"
         query: 'hosted_zone'
       register: 'route53_zone_result'
       no_log: false

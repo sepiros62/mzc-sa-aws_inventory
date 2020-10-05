@@ -2,9 +2,9 @@
 - block:
     - name: 'S3 | Gather information about s3 bucket in AWS'
       aws_s3_bucket_info:
-          region: "{{ AWS_REGION }}"
-          aws_access_key: "{{ lookup('env','AWS_ACCESS_KEY_ID') }}"
-          aws_secret_key: "{{ lookup('env','AWS_SECRET_ACCESS_KEY') }}"
+        region: "{{ AWS_REGION }}"
+        aws_access_key: "{{ lookup('env','AWS_ACCESS_KEY_ID') }}"
+        aws_secret_key: "{{ lookup('env','AWS_SECRET_ACCESS_KEY') }}"
       register: 's3_bucket_result'
       no_log: false
       delegate_to: localhost

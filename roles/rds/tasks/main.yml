@@ -2,9 +2,9 @@
 - block:
     - name: 'RDS | Gather information about RDS Instance in AWS'
       rds_instance_info:
-          region: "{{ AWS_REGION }}"
-          aws_access_key: "{{ lookup('env','AWS_ACCESS_KEY_ID') }}"
-          aws_secret_key: "{{ lookup('env','AWS_SECRET_ACCESS_KEY') }}"
+        region: "{{ AWS_REGION }}"
+        aws_access_key: "{{ lookup('env','AWS_ACCESS_KEY_ID') }}"
+        aws_secret_key: "{{ lookup('env','AWS_SECRET_ACCESS_KEY') }}"
       register: 'rds_instance_result'
       no_log: false
       delegate_to: localhost
