@@ -4,7 +4,7 @@
     mode: '0644'
     force: true
 
-- shell: "python2 csv-to-xlsx.py"
+- shell: "python3 csv-to-xlsx.py"
   args:
     chdir: "{{ role_path }}/files/"
   changed_when: false
