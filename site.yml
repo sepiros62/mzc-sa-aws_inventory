@@ -17,7 +17,7 @@
     - { role: "{{ resource_type[5] | default('') }}", tags: [ all, "{{ resource_type[5] | default('') }}" ], when: awx is defined }
 
   tasks:
-    - import_rle:
+    - import_role:
         name: 'convert'
         tasks_from: 'main'
       when: awx is defined
