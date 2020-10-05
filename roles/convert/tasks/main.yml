@@ -1,3 +1,9 @@
+- template:
+    src: "{{ role_path }}/templates/csv-to-xlsx.j2"
+    dest: "{{ role_path }}/files/csv-to-xlsx.py"
+    mode: '0644'
+    force: true
+
 - shell: "python2 csv-to-xlsx.py"
   args:
     chdir: "{{ role_path }}/files/"
