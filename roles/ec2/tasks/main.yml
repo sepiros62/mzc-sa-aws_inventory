@@ -25,7 +25,7 @@
     - name: 'EC2 | Create Jinja template about ec2 instances in AWS'
       template:
         src: "{{ role_path }}/templates/ec2-template.j2"
-        dest: "{{ role_path }}/../../roles/convert/files/ec2-report.csv"
+        dest: "/tmp/ec2-report.csv"
         mode: '0644'
         force: true
       delegate_to: localhost

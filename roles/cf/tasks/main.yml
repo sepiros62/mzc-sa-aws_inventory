@@ -20,7 +20,7 @@
     - name: 'CF | Create Jinja template about Route in AWS'
       template:
         src: "{{ role_path }}/templates/cf-template.j2"
-        dest: "{{ role_path }}/../../roles/convert/files/cf-report.csv"
+        dest: "/tmp/cf-report.csv"
         mode: '0644'
         force: true
       delegate_to: localhost

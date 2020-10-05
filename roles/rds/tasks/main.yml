@@ -29,7 +29,7 @@
     - name: 'RDS | Create Jinja template about RDS Instance in AWS'
       template:
         src: "{{ role_path }}/templates/rds-template.j2"
-        dest: "{{ role_path }}/../../roles/convert/files/rds-report.csv"
+        dest: "/tmp/rds-report.csv"
         mode: '0644'
         force: true
       delegate_to: localhost

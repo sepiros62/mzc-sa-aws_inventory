@@ -91,7 +91,7 @@ ws6 = wb.create_sheet()
 ws6.title = "ROUTE53"
 ws6['A1'] = '[AWS] EC2 Resource'
 
-with open('{{ role_path }}/files/ec2-report.csv', 'r') as f:
+with open('ec2-report.csv', 'r') as f:
     reader = csv.reader(f)
     for r, row in enumerate(reader):
         for c, col in enumerate(row):
@@ -100,7 +100,7 @@ with open('{{ role_path }}/files/ec2-report.csv', 'r') as f:
               cell.value = val
     wb.save(filename = dest_filename)
 
-with open('{{ role_path }}/files/vpc-report.csv', 'r') as f:
+with open('vpc-report.csv', 'r') as f:
     reader = csv.reader(f)
     for r, row in enumerate(reader):
         for c, col in enumerate(row):
@@ -110,7 +110,7 @@ with open('{{ role_path }}/files/vpc-report.csv', 'r') as f:
     wb.save(filename = dest_filename)
 
 excel_initialized(ws3)
-with open('{{ role_path }}/files/s3-report.csv', 'r') as f:
+with open('s3-report.csv', 'r') as f:
     reader = csv.reader(f)
     for r, row in enumerate(reader):
         for c, col in enumerate(row):
@@ -120,7 +120,7 @@ with open('{{ role_path }}/files/s3-report.csv', 'r') as f:
     wb.save('filename = dest_filename')
 
 excel_initialized(ws4)
-with open('{{ role_path }}/files/cf-report.csv', 'r') as f:
+with open('cf-report.csv', 'r') as f:
     reader = csv.reader(f)
     for r, row in enumerate(reader):
         for c, col in enumerate(row):
@@ -130,7 +130,7 @@ with open('{{ role_path }}/files/cf-report.csv', 'r') as f:
     wb.save('filename = dest_filename')
 
 excel_initialized(ws5)
-with open('{{ role_path }}/files/rds-report.csv', 'r') as f:
+with open('rds-report.csv', 'r') as f:
     reader = csv.reader(f)
     for r, row in enumerate(reader):
         for c, col in enumerate(row):
@@ -140,7 +140,7 @@ with open('{{ role_path }}/files/rds-report.csv', 'r') as f:
     wb.save('filename = dest_filename')
 
 excel_initialized(ws6)
-with open('{{ role_path }}/files/route53-report.csv', 'r') as f:
+with open('route53-report.csv', 'r') as f:
     reader = csv.reader(f)
     for r, row in enumerate(reader):
         for c, col in enumerate(row):
