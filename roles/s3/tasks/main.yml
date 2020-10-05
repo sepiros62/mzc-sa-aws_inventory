@@ -15,13 +15,13 @@
 
     - name: 'S3 | Create Jinja template about s3 bucket in AWS'
       template:
-        src: "{{ role_path }}/templates/{{ resource_type[2] }}-template.j2"
-        dest: "{{ role_path }}/files/{{ resource_type[2] }}-report.csv"
+        src: "{{ role_path }}/templates/{{ resource_type[2] | default('resource_type[0]') }}-template.j2"
+        dest: "{{ role_path }}/files/{{ resource_type[2] | default('resource_type[0]') }}-report.csv"
         mode: '0644'
         force: true
       delegate_to: localhost
 
-    - name: 'Show success message'
+    - name: 'S3 | Show success message'
       debug:
         msg:
           - '================'
@@ -30,7 +30,7 @@
       delegate_to: localhost
 
   rescue:
-    - name: 'Show failure message'
+    - name: 'S3 | Show failure message'
       debug:
         msg:
           - '================'

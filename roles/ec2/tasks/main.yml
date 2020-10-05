@@ -30,7 +30,7 @@
         force: true
       delegate_to: localhost
 
-    - name: 'Show success message'
+    - name: 'EC2 | Show success message'
       debug:
         msg:
           - '================'
@@ -39,7 +39,7 @@
       delegate_to: localhost
 
   rescue:
-    - name: 'Show failure message'
+    - name: 'EC2 | Show failure message'
       debug:
         msg:
           - '================'
