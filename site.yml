@@ -20,6 +20,7 @@
     - import_role:
         name: 'convert'
         tasks_from: 'main'
+      tags: [ 'all', 'convert' ]
       when: awx is defined
 
   # - import_tasks: slack.yml
