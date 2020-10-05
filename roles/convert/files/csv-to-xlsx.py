@@ -65,88 +65,16 @@ def con_style(sheetname):
 
 # Main 
 wb = Workbook()
-dest_filename = 'AWS-Resource.xlsx'
+ws = wb.active
+ws.title="test"
 
-ws1 = wb.active
-ws1.title = 'EC2'
-ws1['A1'] = '[AWS] EC2 Resource'
+excel_initialized(ws)
 
-ws2 = wb.create_sheet()
-ws2.title = "VPC"
-ws2['A1'] = '[AWS] VPC Resource'
-
-ws3 = wb.create_sheet()
-ws3.title = "S3"
-ws3['A1'] = '[AWS] S3 Resource'
-
-ws4 = wb.create_sheet()
-ws4.title = "CF"
-ws4['A1'] = '[AWS] CF Resource'
-
-ws5 = wb.create_sheet()
-ws5.title = "RDS"
-ws5['A1'] = '[AWS] RDS Resource'
-
-ws6 = wb.create_sheet()
-ws6.title = "ROUTE53"
-ws6['A1'] = '[AWS] EC2 Resource'
-
-excel_initialized(ws1)
 with open('ec2-template.csv', 'r') as f:
     reader = csv.reader(f)
     for r, row in enumerate(reader):
         for c, col in enumerate(row):
             for idx, val in enumerate(col.split(',')):
-              cell = ws1.cell(row=r+1, column=c+1)
+              cell = ws.cell(row=r+1, column=c+1)
               cell.value = val
-    wb.save('filename = dest_filename')
-
-excel_initialized(ws2)
-with open('vpc-template.csv', 'r') as f:
-    reader = csv.reader(f)
-    for r, row in enumerate(reader):
-        for c, col in enumerate(row):
-            for idx, val in enumerate(col.split(',')):
-              cell = ws1.cell(row=r+1, column=c+1)
-              cell.value = val
-    wb.save('filename = dest_filename')
-
-excel_initialized(ws3)
-with open('s3-template.csv', 'r') as f:
-    reader = csv.reader(f)
-    for r, row in enumerate(reader):
-        for c, col in enumerate(row):
-            for idx, val in enumerate(col.split(',')):
-              cell = ws1.cell(row=r+1, column=c+1)
-              cell.value = val
-    wb.save('filename = dest_filename')
-
-excel_initialized(ws4)
-with open('cf-template.csv', 'r') as f:
-    reader = csv.reader(f)
-    for r, row in enumerate(reader):
-        for c, col in enumerate(row):
-            for idx, val in enumerate(col.split(',')):
-              cell = ws1.cell(row=r+1, column=c+1)
-              cell.value = val
-    wb.save('filename = dest_filename')
-
-excel_initialized(ws5)
-with open('rds-template.csv', 'r') as f:
-    reader = csv.reader(f)
-    for r, row in enumerate(reader):
-        for c, col in enumerate(row):
-            for idx, val in enumerate(col.split(',')):
-              cell = ws1.cell(row=r+1, column=c+1)
-              cell.value = val
-    wb.save('filename = dest_filename')
-
-excel_initialized(ws6)
-with open('route53-template.csv', 'r') as f:
-    reader = csv.reader(f)
-    for r, row in enumerate(reader):
-        for c, col in enumerate(row):
-            for idx, val in enumerate(col.split(',')):
-              cell = ws1.cell(row=r+1, column=c+1)
-              cell.value = val
-    wb.save('filename = dest_filename')
+    wb.save('ec2-template.xlsx')
