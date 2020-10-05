@@ -16,9 +16,11 @@
     - { role: "{{ resource_type[4] | default('') }}", tags: [ all, "{{ resource_type[4] | default('') }}" ], when: awx is defined }
     - { role: "{{ resource_type[5] | default('') }}", tags: [ all, "{{ resource_type[5] | default('') }}" ], when: awx is defined }
 
-  # tasks:
-  # - import_tasks: convert.yml
-  #   when: task_type == 'all' or  task_type == 'part'
+  tasks:
+    - import_rle:
+        name: 'convert'
+        tasks_from: 'main'
+    when: awx is defined
 
   # - import_tasks: slack.yml
   #   when: task_type == 'all' or  task_type == 'part'
