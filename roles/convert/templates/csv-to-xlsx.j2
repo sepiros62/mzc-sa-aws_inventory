@@ -109,7 +109,6 @@ with open('vpc-report.csv', 'r') as f:
               cell.value = val
     wb.save(filename = dest_filename)
 
-excel_initialized(ws3)
 with open('s3-report.csv', 'r') as f:
     reader = csv.reader(f)
     for r, row in enumerate(reader):
@@ -119,7 +118,6 @@ with open('s3-report.csv', 'r') as f:
               cell.value = val
     wb.save('filename = dest_filename')
 
-excel_initialized(ws4)
 with open('cf-report.csv', 'r') as f:
     reader = csv.reader(f)
     for r, row in enumerate(reader):
@@ -129,7 +127,6 @@ with open('cf-report.csv', 'r') as f:
               cell.value = val
     wb.save('filename = dest_filename')
 
-excel_initialized(ws5)
 with open('rds-report.csv', 'r') as f:
     reader = csv.reader(f)
     for r, row in enumerate(reader):
@@ -139,7 +136,6 @@ with open('rds-report.csv', 'r') as f:
               cell.value = val
     wb.save('filename = dest_filename')
 
-excel_initialized(ws6)
 with open('route53-report.csv', 'r') as f:
     reader = csv.reader(f)
     for r, row in enumerate(reader):
