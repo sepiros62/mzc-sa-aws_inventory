@@ -18,12 +18,12 @@
 
     - name: 'ROUTE53 | Create Jinja template about Route in AWS'
       template:
-        src: "{{ role_path }}/templates/{{ resource_type[5] }}-template.j2"
-        dest: "{{ role_path }}/files/{{ resource_type[5] }}-report.csv"
+        src: "{{ role_path }}/templates/route53-template.j2"
+        dest: "{{ role_path }}/files/route53-report.csv"
         mode: '0644'
         force: true
 
-    - name: 'Show success message'
+    - name: 'ROUTE53 | Show success message'
       debug:
         msg:
           - '================'
@@ -31,7 +31,7 @@
           - '================'
 
   rescue:
-    - name: 'Show failure message'
+    - name: 'ROUTE53 | Show failure message'
       debug:
         msg:
           - '================'

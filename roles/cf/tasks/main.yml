@@ -1,6 +1,6 @@
 ---
 - block:
-    - name: 'CloudFront | Gather information about Distributions in AWS'
+    - name: 'CF | Gather information about Distributions in AWS'
       cloudfront_info:
         region: "{{ AWS_REGION }}"
         aws_access_key: "{{ lookup('env','AWS_ACCESS_KEY_ID') }}"
@@ -10,22 +10,22 @@
       no_log: false
       delegate_to: localhost
 
-    - name: 'CloudFront | Create variable about Distributions in AWS'
+    - name: 'CF | Create variable about Distributions in AWS'
       set_fact:
         aws_cf_id: "{{ cf_distribution_result | json_query('cloudfront.summary.distributions[*].Id') }}"
         aws_cf_status: "{{ cf_distribution_result | json_query('cloudfront.summary.distributions[*].Status') }}"
         aws_cf_domain: "{{ cf_distribution_result | json_query('cloudfront.summary.distributions[*].DomainName') }}"
       delegate_to: localhost
 
-    - name: 'CloudFront | Create Jinja template about Route in AWS'
+    - name: 'CF | Create Jinja template about Route in AWS'
       template:
-        src: "{{ role_path }}/templates/{{ resource_type[3] }}-template.j2"
-        dest: "{{ role_path }}/files/{{ resource_type[3] }}-report.csv"
+        src: "{{ role_path }}/templates/cf-template.j2"
+        dest: "{{ role_path }}/files/cf-report.csv"
         mode: '0644'
         force: true
       delegate_to: localhost
 
-    - name: 'Show success message'
+    - name: 'CF | Show success message'
       debug:
         msg:
           - '================'
@@ -34,7 +34,7 @@
       delegate_to: localhost
 
   rescue:
-    - name: 'Show failure message'
+    - name: 'CF | Show failure message'
       debug:
         msg:
           - '================'

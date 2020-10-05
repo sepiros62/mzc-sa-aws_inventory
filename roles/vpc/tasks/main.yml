@@ -44,13 +44,13 @@
 
     - name: 'VPC | Create Jinja template about VPC in AWS'
       template:
-        src: "{{ role_path }}/templates/{{ resource_type[1] }}-template.j2"
-        dest: "{{ role_path }}/files/{{ resource_type[1] }}-report.csv"
+        src: "{{ role_path }}/templates/vpc-template.j2"
+        dest: "{{ role_path }}/files/vpc-report.csv"
         mode: '0644'
         force: true
       delegate_to: localhost
 
-    - name: 'Show success message'
+    - name: 'VPC | Show success message'
       debug:
         msg:
           - '================'
@@ -59,7 +59,7 @@
       delegate_to: localhost
 
   rescue:
-    - name: 'Show failure message'
+    - name: 'VPC | Show failure message'
       debug:
         msg:
           - '================'

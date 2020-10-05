@@ -28,13 +28,13 @@
 
     - name: 'RDS | Create Jinja template about RDS Instance in AWS'
       template:
-        src: "{{ role_path }}/templates/{{ resource_type[4] }}-template.j2"
-        dest: "{{ role_path }}/files/{{ resource_type[4] }}-report.csv"
+        src: "{{ role_path }}/templates/rds-template.j2"
+        dest: "{{ role_path }}/files/rds-report.csv"
         mode: '0644'
         force: true
       delegate_to: localhost
 
-    - name: 'Show success message'
+    - name: 'RDS | Show success message'
       debug:
         msg:
           - '================'
@@ -43,7 +43,7 @@
       delegate_to: localhost
 
   rescue:
-    - name: 'Show failure message'
+    - name: 'RDS | Show failure message'
       debug:
         msg:
           - '================'
