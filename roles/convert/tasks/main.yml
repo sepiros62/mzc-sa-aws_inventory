@@ -3,8 +3,10 @@
     dest: "{{ role_path }}/files/csv-to-xlsx.py"
     mode: '0644'
     force: true
+  delegate_to: 'localhost'
 
-- shell: "python3 csv-to-xlsx.py"
+- command: 'python3 csv-to-xlsx.py'
   args:
     chdir: "{{ role_path }}/files/"
   changed_when: false
+  delegate_to: 'localhost'
