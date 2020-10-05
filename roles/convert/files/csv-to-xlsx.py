@@ -39,9 +39,9 @@ def excel_initialized(sheet_name):
     ws.column_dimensions['G'].width = 13
     ws.column_dimensions['H'].width = 16
 
-    title_cell = ws.cell(row=2, column=2, value="Megazone Infra Monthly Report")
-    title_cell.font = ft_head_line
-    title_cell.border = bottom_line
+#    title_cell = ws.cell(row=2, column=2, value="Megazone Infra Monthly Report")
+#    title_cell.font = ft_head_line
+#    title_cell.border = bottom_line
 
 #    ws['b6'].font = ft_bot_line
 #    ws['b6'].fill = gray_fill
@@ -63,9 +63,9 @@ def con_style(sheetname):
     sheetname.font = ft_con_line
 
 
-# Main 
+# Main
 wb = Workbook()
-dest_filename = './AWS-Resource.xlsx'
+dest_filename = 'AWS-Resource.xlsx'
 
 ws1 = wb.active
 ws1.title = 'EC2'
@@ -91,7 +91,6 @@ ws6 = wb.create_sheet()
 ws6.title = "ROUTE53"
 ws6['A1'] = '[AWS] EC2 Resource'
 
-excel_initialized(ws1)
 with open('./ec2-report.csv', 'r') as f:
     reader = csv.reader(f)
     for r, row in enumerate(reader):
@@ -99,17 +98,16 @@ with open('./ec2-report.csv', 'r') as f:
             for idx, val in enumerate(col.split(',')):
               cell = ws1.cell(row=r+1, column=c+1)
               cell.value = val
-    wb.save('filename = dest_filename')
+    wb.save(filename = dest_filename)
 
-excel_initialized(ws2)
 with open('./vpc-report.csv', 'r') as f:
     reader = csv.reader(f)
     for r, row in enumerate(reader):
         for c, col in enumerate(row):
             for idx, val in enumerate(col.split(',')):
-              cell = ws1.cell(row=r+1, column=c+1)
+              cell = ws2.cell(row=r+1, column=c+1)
               cell.value = val
-    wb.save('filename = dest_filename')
+    wb.save(filename = dest_filename)
 
 excel_initialized(ws3)
 with open('./s3-report.csv', 'r') as f:
@@ -117,7 +115,7 @@ with open('./s3-report.csv', 'r') as f:
     for r, row in enumerate(reader):
         for c, col in enumerate(row):
             for idx, val in enumerate(col.split(',')):
-              cell = ws1.cell(row=r+1, column=c+1)
+              cell = ws3.cell(row=r+1, column=c+1)
               cell.value = val
     wb.save('filename = dest_filename')
 
@@ -127,7 +125,7 @@ with open('./cf-report.csv', 'r') as f:
     for r, row in enumerate(reader):
         for c, col in enumerate(row):
             for idx, val in enumerate(col.split(',')):
-              cell = ws1.cell(row=r+1, column=c+1)
+              cell = ws4.cell(row=r+1, column=c+1)
               cell.value = val
     wb.save('filename = dest_filename')
 
@@ -137,7 +135,7 @@ with open('./rds-report.csv', 'r') as f:
     for r, row in enumerate(reader):
         for c, col in enumerate(row):
             for idx, val in enumerate(col.split(',')):
-              cell = ws1.cell(row=r+1, column=c+1)
+              cell = ws5.cell(row=r+1, column=c+1)
               cell.value = val
     wb.save('filename = dest_filename')
 
@@ -147,6 +145,6 @@ with open('./route53-report.csv', 'r') as f:
     for r, row in enumerate(reader):
         for c, col in enumerate(row):
             for idx, val in enumerate(col.split(',')):
-              cell = ws1.cell(row=r+1, column=c+1)
+              cell = ws6.cell(row=r+1, column=c+1)
               cell.value = val
     wb.save('filename = dest_filename')
