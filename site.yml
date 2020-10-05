@@ -20,7 +20,7 @@
     - import_rle:
         name: 'convert'
         tasks_from: 'main'
-    when: awx is defined
+      when: awx is defined
 
   # - import_tasks: slack.yml
   #   when: task_type == 'all' or  task_type == 'part'
