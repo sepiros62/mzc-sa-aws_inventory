@@ -1,0 +1,39 @@
+---
+- block:
+    - name: 'SG | Gather information about SecurityGroup in AWS'
+      ec2_group_facts:
+        region: "{{ AWS_REGION }}"
+        aws_access_key: "{{ lookup('env','AWS_ACCESS_KEY_ID') }}"
+        aws_secret_key: "{{ lookup('env','AWS_SECRET_ACCESS_KEY') }}"
+      register: 'sg_bucket_result'
+      no_log: false
+      delegate_to: localhost
+
+    # - name: 'SG | Create variable about SecurityGroup in AWS'
+      # set_fact:
+        # aws_SG_bucket: "{{ SG_bucket_result | json_query('buckets[*].name') }}"
+
+    # - name: 'SG | Create Jinja template about SecurityGroup in AWS'
+    #   template:
+    #     src: "{{ role_path }}/templates/SG-template.j2"
+    #     dest: "/tmp/SG-report.csv"
+    #     mode: '0644'
+    #     force: true
+    #   delegate_to: localhost
+
+    - name: 'SG | Show success message'
+      debug:
+        msg:
+          - '================'
+          - '= TASK SUCCESS ='
+          - '================'
+      delegate_to: localhost
+
+  rescue:
+    - name: 'SG | Show failure message'
+      debug:
+        msg:
+          - '================'
+          - '= TASK FAILURE ='
+          - '================'
+      delegate_to: localhost
