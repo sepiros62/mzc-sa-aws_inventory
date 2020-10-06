@@ -1,11 +1,13 @@
-- template:
+- name: 'Convert | Create xlsx Conversion Python Script'
+  template:
     src: "{{ role_path }}/templates/csv-to-xlsx.j2"
     dest: "/tmp/csv-to-xlsx.py"
     mode: '0644'
     force: true
   delegate_to: 'localhost'
 
-- command: 'python csv-to-xlsx.py'
+- name: 'Convert | Execute xlsx transform Python script'
+  command: 'python csv-to-xlsx.py'
   args:
     chdir: "/tmp/"
   changed_when: false
