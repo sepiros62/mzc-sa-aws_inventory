@@ -23,5 +23,8 @@
       tags: [ 'all', 'convert' ]
       when: awx is defined
 
-  # - import_tasks: slack.yml
-  #   when: task_type == 'all' or  task_type == 'part'
+    - import_role:
+        name: 'slack'
+        tasks_from: 'main'
+      tags: [ 'all', 'slack' ]
+      when: awx is defined

@@ -65,7 +65,7 @@ def con_style(sheetname):
 
 # Main
 wb = Workbook()
-dest_filename = 'AWS-Resource.xlsx'
+dest_filename = '{{ slack_file_name }}'
 
 ws1 = wb.active
 ws1.title = 'EC2'
