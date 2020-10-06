@@ -9,7 +9,7 @@ Number,Subnet Name,Subnet ID,IPv4 CIDR,Avaiilability Zone
 {{ loop.index }},{{ aws_subnet_name[i] | default('') }},{{ aws_subnet_id[i] }},{{ aws_subnet_cidr[i] }},{{ aws_subnet_az[i] }}
 {% endfor %}
 
-Number,RouteTable Name,RouteTAble ID,Destination,Target
+Number,RouteTable Name,RouteTable ID,Destination,Target
 {% for i in range(aws_route_id|length) %}
-{{ loop.index }},{{ aws_route_name[i] | default('') }},{{ aws_route_cidr[i] | regex_replace("(\\[|\\]|\\')", "") }},{{ aws_route_target[i] | regex_replace("(\\[|\\]|\\')", "") }}
+{{ loop.index }},{{ aws_route_name[i] | default('') }},{{ aws_route_id[i] }},{{ aws_route_cidr[i] | regex_replace("(\\[|\\]|\\')", "") }},{{ aws_route_target[i] | regex_replace("(\\[|\\]|\\')", "") }}
 {% endfor %}
