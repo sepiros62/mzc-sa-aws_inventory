@@ -15,7 +15,8 @@
     - { role: "{{ resource_type[3] | default('') }}", tags: [ all, "{{ resource_type[3] | default('') }}" ], when: awx is defined }
     - { role: "{{ resource_type[4] | default('') }}", tags: [ all, "{{ resource_type[4] | default('') }}" ], when: awx is defined }
     - { role: "{{ resource_type[5] | default('') }}", tags: [ all, "{{ resource_type[5] | default('') }}" ], when: awx is defined }
-    - { role: "{{ resource_type[6] | default('') }}", tags: [ all, "{{ resource_type[6] | default('') }}" ], when: awx is defined }
+    - { role: sg, tags: sg }
+    # - { role: "{{ resource_type[6] | default('') }}", tags: [ all, "{{ resource_type[6] | default('') }}" ], when: awx is defined }
 
   tasks:
     - import_role:
