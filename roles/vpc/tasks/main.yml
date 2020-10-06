@@ -45,7 +45,7 @@
     - name: 'VPC | Create Jinja template about VPC in AWS'
       template:
         src: "{{ role_path }}/templates/vpc-template.j2"
-        dest: "{{ role_path }}/../../roles/convert/files/vpc-report.csv"
+        dest: "/tmp/vpc-report.csv"
         mode: '0644'
         force: true
       delegate_to: localhost
