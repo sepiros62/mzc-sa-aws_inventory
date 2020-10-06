@@ -1,7 +1,7 @@
 {# Header #}
 Number,VPC Name,VPC ID,IPv4 CIDR
 {% for i in range(aws_vpc_id|length) %}
-{{ loop.index }},{{ aws_vpc_name[i] | regex_replace("(\\[|\\]|\\')", "") }},{{ aws_vpc_id[i] }},{{ aws_vpc_cidr[i] }}
+{{ loop.index }},{{ aws_vpc_name[i] | regex_replace("(\\[|\\])", "") }},{{ aws_vpc_id[i] }},{{ aws_vpc_cidr[i] }}
 {% endfor %}
 
 {#
