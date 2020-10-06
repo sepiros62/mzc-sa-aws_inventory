@@ -29,8 +29,8 @@
 
     - name: 'VPC | Create variable about VPC, Subnet, RouteTable in AWS'
       set_fact:
-        aws_vpc_name: "{{ vpc_net_result | json_query('vpcs[*].tags.Name') }}"
-        aws_vpc_id: "{{ vpc_net_result | json_query('vpcs[*].vpc_id[]') }}"
+        aws_vpc_name: "{{ vpc_net_result | json_query('vpcs[*].tags.Name[]') }}"
+        aws_vpc_id: "{{ vpc_net_result | json_query('vpcs[*].vpc_id') }}"
         aws_vpc_cidr: "{{ vpc_net_result | json_query('vpcs[*].cidr_block') }}"
         aws_subnet_name: "{{ vpc_subnet_result | json_query('subnets[*].tags.Name') }}"
         aws_subnet_id: "{{ vpc_subnet_result | json_query('subnets[*].id') }}"
