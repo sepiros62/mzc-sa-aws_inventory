@@ -4,14 +4,12 @@ Number,VPC Name,VPC ID,IPv4 CIDR
 {{ loop.index }},{{ aws_vpc_name[i] | default('') }},{{ aws_vpc_id[i] }},{{ aws_vpc_cidr[i] }}
 {% endfor %}
 
-{#
 Number,Subnet Name,Subnet ID,IPv4 CIDR,Avaiilability Zone
 {% for i in range(aws_subnet_id|length) %}
-{{ loop.index }},{{ aws_subnet_name[i] }},{{ aws_subnet_id[i] }},{{ aws_subnet_cidr[i] }},{{ aws_subnet_az[i] }}
+{{ loop.index }},{{ aws_subnet_name[i] | default('') }},{{ aws_subnet_id[i] }},{{ aws_subnet_cidr[i] }},{{ aws_subnet_az[i] }}
 {% endfor %}
 
 Number,RouteTable Name,RouteTAble ID,Destination,Target
 {% for i in range(aws_route_id|length) %}
-{{ loop.index }},{{ aws_route_name[i] }},{{ aws_route_cidr[i] }},{{ aws_route_target[i] }}
+{{ loop.index }},{{ aws_route_name[i] | default('') }},{{ aws_route_cidr[i] | regex_replace("(\\[|\\]|\\')", "") }},{{ aws_route_target[i] | regex_replace("(\\[|\\]|\\')", "") }}
 {% endfor %}
-#}
