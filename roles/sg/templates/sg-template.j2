@@ -1,2 +1,5 @@
 {# Header #}
-Number,Bucket Name
+Number,SecurityGroup Name,SecurityGroup ID,Protocol,Port,Source,Description
+{% for i in range(aws_instance_id|length) %}
+{{ loop.index }},{{ aws_sg_name[i] | default('') }},{{ aws_sg_id[i] }}
+{% endfor %}

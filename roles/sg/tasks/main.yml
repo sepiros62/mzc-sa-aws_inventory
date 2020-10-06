@@ -9,9 +9,17 @@
       no_log: false
       delegate_to: localhost
 
-    # - name: 'SG | Create variable about SecurityGroup in AWS'
-      # set_fact:
-        # aws_SG_bucket: "{{ SG_bucket_result | json_query('buckets[*].name') }}"
+    - name: 'SG | Create variable about SecurityGroup in AWS'
+      set_fact:
+        aws_sg_name: "{{ sg_bucket_result | json_query('security_groups[*].tags.Name') }}"
+        aws_sg_id: "{{ sg_bucket_result | json_query('security_groups[*].group_id') }}"
+        
+        # aws_sg_potocol: "{{ sg_bucket_result | json_query('buckets[*].name') }}"
+        # aws_sg_port: "{{ sg_bucket_result | json_query('buckets[*].name') }}"
+        # aws_sg_source: "{{ sg_bucket_result | json_query('buckets[*].name') }}"
+        aws_sg_description: "{{ sg_bucket_result | json_query('security_groups[*].description') }}"
+
+
 
     # - name: 'SG | Create Jinja template about SecurityGroup in AWS'
     #   template:
