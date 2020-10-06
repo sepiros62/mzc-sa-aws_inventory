@@ -1,15 +1,17 @@
 {# Header #}
 Number,VPC Name,VPC ID,IPv4 CIDR
 {% for i in range(aws_vpc_id|length) %}
-{{ loop.index }},{{ aws_vpc_name[i] }},{{ aws_vpc_id[i] }},{{ aws_vpc_cidr[i] }}
+{{ loop.index }},{{ aws_vpc_name[i] | regex_replace("(\\[|\\]|\\')", "") }},{{ aws_vpc_id[i] }},{{ aws_vpc_cidr[i] }}
 {% endfor %}
 
+{#
 Number,Subnet Name,Subnet ID,IPv4 CIDR,Avaiilability Zone
 {% for i in range(aws_subnet_id|length) %}
 {{ loop.index }},{{ aws_subnet_name[i] }},{{ aws_subnet_id[i] }},{{ aws_subnet_cidr[i] }},{{ aws_subnet_az[i] }}
 {% endfor %}
 
-Number,RouteTable Name, RouteTAble ID,Destination, Target
+Number,RouteTable Name,RouteTAble ID,Destination,Target
 {% for i in range(aws_route_id|length) %}
 {{ loop.index }},{{ aws_route_name[i] }},{{ aws_route_cidr[i] }},{{ aws_route_target[i] }}
 {% endfor %}
+#}
