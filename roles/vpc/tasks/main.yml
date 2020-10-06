@@ -6,7 +6,7 @@
         aws_access_key: "{{ lookup('env','AWS_ACCESS_KEY_ID') }}"
         aws_secret_key: "{{ lookup('env','AWS_SECRET_ACCESS_KEY') }}"
       register: 'vpc_net_result'
-      no_log: true
+      # no_log: true
       delegate_to: localhost
 
     - name: 'VPC | Gather information about Subnet in AWS'
@@ -15,7 +15,7 @@
         aws_access_key: "{{ lookup('env','AWS_ACCESS_KEY_ID') }}"
         aws_secret_key: "{{ lookup('env','AWS_SECRET_ACCESS_KEY') }}"
       register: 'vpc_subnet_result'
-      no_log: true
+      # no_log: true
       delegate_to: localhost
 
     - name: 'VPC | Gather information about RouteTable in AWS'
@@ -24,13 +24,13 @@
         aws_access_key: "{{ lookup('env','AWS_ACCESS_KEY_ID') }}"
         aws_secret_key: "{{ lookup('env','AWS_SECRET_ACCESS_KEY') }}"
       register: 'vpc_route_result'
-      no_log: true
+      # no_log: true
       delegate_to: localhost
 
     - name: 'VPC | Create variable about VPC, Subnet, RouteTable in AWS'
       set_fact:
         aws_vpc_name: "{{ vpc_net_result | json_query('vpcs[*].tags.Name') }}"
-        aws_vpc_id: "{{ vpc_net_result | json_query('vpcs[*].vpc_id') }}"
+        aws_vpc_id: "{{ vpc_net_result | json_query('vpcs[*].vpc_id[]') }}"
         aws_vpc_cidr: "{{ vpc_net_result | json_query('vpcs[*].cidr_block') }}"
         aws_subnet_name: "{{ vpc_subnet_result | json_query('subnets[*].tags.Name') }}"
         aws_subnet_id: "{{ vpc_subnet_result | json_query('subnets[*].id') }}"
@@ -45,7 +45,7 @@
     - name: 'VPC | Create Jinja template about VPC in AWS'
       template:
         src: "{{ role_path }}/templates/vpc-template.j2"
-        dest: "/tmp/vpc-report.csv"
+        dest: "{{ role_path }}/../../roles/convert/files/vpc-report.csv"
         mode: '0644'
         force: true
       delegate_to: localhost
