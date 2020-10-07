@@ -71,36 +71,64 @@ ws1 = wb.active
 ws1.title = 'EC2'
 ws1.tabColor = "00808080"
 ws1['A1'] = '[AWS] EC2 Resource'
+ws1.pageSetUpPr = PageSetupProperties(fitToPage=True, autoPageBreaks=False)
+ws1.outlinePr.summaryBelow = False
+ws1.outlinePr.applyStyles = True
+ws1.pageSetUpPr.autoPageBreaks = True
 
 ws2 = wb.create_sheet()
 ws2.title = "VPC"
 ws2.tabColor = "00FFCC99"
 ws2['A1'] = '[AWS] VPC Resource'
+ws2.pageSetUpPr = PageSetupProperties(fitToPage=True, autoPageBreaks=False)
+ws2.outlinePr.summaryBelow = False
+ws2.outlinePr.applyStyles = True
+ws2.pageSetUpPr.autoPageBreaks = True
 
 ws3 = wb.create_sheet()
 ws3.title = "S3"
 ws3.tabColor = "0033CCCC"
 ws3['A1'] = '[AWS] S3 Resource'
+ws3.pageSetUpPr = PageSetupProperties(fitToPage=True, autoPageBreaks=False)
+ws3.outlinePr.summaryBelow = False
+ws3.outlinePr.applyStyles = True
+ws3.pageSetUpPr.autoPageBreaks = True
 
 ws4 = wb.create_sheet()
 ws4.title = "CF"
 ws4.tabColor = "0099CC00"
 ws4['A1'] = '[AWS] CF Resource'
+ws4.pageSetUpPr = PageSetupProperties(fitToPage=True, autoPageBreaks=False)
+ws4.outlinePr.summaryBelow = False
+ws4.outlinePr.applyStyles = True
+ws4.pageSetUpPr.autoPageBreaks = True
 
 ws5 = wb.create_sheet()
 ws5.title = "RDS"
 ws5.tabColor = "0099CCFF"
 ws5['A1'] = '[AWS] RDS Resource'
+ws5.pageSetUpPr = PageSetupProperties(fitToPage=True, autoPageBreaks=False)
+ws5.outlinePr.summaryBelow = False
+ws5.outlinePr.applyStyles = True
+ws5.pageSetUpPr.autoPageBreaks = True
 
 ws6 = wb.create_sheet()
 ws6.title = "ROUTE53"
 ws6.tabColor = "00FF9900"
 ws6['A1'] = '[AWS] Route53 Resource'
+ws6.pageSetUpPr = PageSetupProperties(fitToPage=True, autoPageBreaks=False)
+ws6.outlinePr.summaryBelow = False
+ws6.outlinePr.applyStyles = True
+ws6.pageSetUpPr.autoPageBreaks = True
 
 ws7 = wb.create_sheet()
 ws7.title = "SG"
 ws7.tabColor = "00FF8080"
 ws7['A1'] = '[AWS] SecurityGroup Resource'
+ws7.pageSetUpPr = PageSetupProperties(fitToPage=True, autoPageBreaks=False)
+ws7.outlinePr.summaryBelow = False
+ws7.outlinePr.applyStyles = True
+ws7.pageSetUpPr.autoPageBreaks = True
 
 with open('ec2-report.csv', 'r') as f:
     reader = csv.reader(f)
