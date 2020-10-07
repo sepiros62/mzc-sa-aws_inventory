@@ -88,8 +88,12 @@ ws5.title = "RDS"
 ws5['A1'] = '[AWS] RDS Resource'
 
 ws6 = wb.create_sheet()
-ws6.title = "SG"
-ws6['A1'] = '[AWS] SecurityGroup Resource'
+ws6.title = "ROUTE53"
+ws6['A1'] = '[AWS] Route53 Resource'
+
+ws7 = wb.create_sheet()
+ws7.title = "SG"
+ws7['A1'] = '[AWS] SecurityGroup Resource'
 
 with open('ec2-report.csv', 'r') as f:
     reader = csv.reader(f)
