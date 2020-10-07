@@ -13,13 +13,10 @@
       set_fact:
         aws_sg_name: "{{ sg_bucket_result | json_query('security_groups[*].tags.Name') }}"
         aws_sg_id: "{{ sg_bucket_result | json_query('security_groups[*].group_id') }}"
-        
-        # aws_sg_potocol: "{{ sg_bucket_result | json_query('buckets[*].name') }}"
-        # aws_sg_port: "{{ sg_bucket_result | json_query('buckets[*].name') }}"
-        # aws_sg_source: "{{ sg_bucket_result | json_query('buckets[*].name') }}"
+        aws_sg_potocol: "{{ sg_bucket_result | json_query('security_groups[*].ip_permissions[*].ip_protocol') }}"
+        aws_sg_port: "{{ sg_bucket_result | json_query('security_groups[*].ip_permissions[*].to_port') }}"
+        aws_sg_source: "{{ sg_bucket_result | json_query('security_groups[*].ip_permissions[*].ip_ranges[*].cidr_ip') }}"
         aws_sg_description: "{{ sg_bucket_result | json_query('security_groups[*].description') }}"
-
-
 
     # - name: 'SG | Create Jinja template about SecurityGroup in AWS'
     #   template:
