@@ -75,32 +75,32 @@ ws1['A1'] = '[AWS] EC2 Resource'
 
 ws2 = wb.create_sheet()
 ws2.title = "VPC"
-ws2.tabColor.tabColor('green')
+ws2.tabColor('green')
 ws2['A1'] = '[AWS] VPC Resource'
 
 ws3 = wb.create_sheet()
 ws3.title = "S3"
-ws3.tabColor.tabColor('#FF8000')
+ws3.tabColor('#FF8000')
 ws3['A1'] = '[AWS] S3 Resource'
 
 ws4 = wb.create_sheet()
 ws4.title = "CF"
-ws4.tabColor.tabColor('#6A0888')
+ws4.tabColor('#6A0888')
 ws4['A1'] = '[AWS] CF Resource'
 
 ws5 = wb.create_sheet()
 ws5.title = "RDS"
-ws5.tabColor.tabColor('#0404B4')
+ws5.tabColor('#0404B4')
 ws5['A1'] = '[AWS] RDS Resource'
 
 ws6 = wb.create_sheet()
 ws6.title = "ROUTE53"
-ws6.tabColor.tabColor('#61380B')
+ws6.tabColor('#61380B')
 ws6['A1'] = '[AWS] Route53 Resource'
 
 ws7 = wb.create_sheet()
 ws7.title = "SG"
-ws7.tabColor.tabColor('#FE2E2E')
+ws7.tabColor('#FE2E2E')
 ws7['A1'] = '[AWS] SecurityGroup Resource'
 
 with open('ec2-report.csv', 'r') as f:
