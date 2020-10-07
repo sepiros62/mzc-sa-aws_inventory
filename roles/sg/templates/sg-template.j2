@@ -1,5 +1,5 @@
 {# Header #}
 Number,SecurityGroup Name,SecurityGroup ID,Protocol,Port,Source,Description
-{% for i in range(aws_instance_id|length) %}
+{% for i in range(aws_sg_id|length) %}
 {{ loop.index }},{{ aws_sg_name[i] | default('') }},{{ aws_sg_id[i] }},{{ aws_sg_potocol[i] | regex_replace("(\\[|\\]|\\')", "") }},{{ aws_sg_port[i] | regex_replace("(\\[|\\]|\\')", "") }},{{ aws_sg_source[i] | regex_replace("(\\[|\\]|\\')", "") }},{{ aws_sg_description[i] }}
 {% endfor %}
