@@ -88,8 +88,8 @@ ws5.title = "RDS"
 ws5['A1'] = '[AWS] RDS Resource'
 
 ws6 = wb.create_sheet()
-ws6.title = "ROUTE53"
-ws6['A1'] = '[AWS] EC2 Resource'
+ws6.title = "SG"
+ws6['A1'] = '[AWS] SecurityGroup Resource'
 
 with open('ec2-report.csv', 'r') as f:
     reader = csv.reader(f)
@@ -142,5 +142,14 @@ with open('route53-report.csv', 'r') as f:
         for c, col in enumerate(row):
             for idx, val in enumerate(col.split(',')):
               cell = ws6.cell(row=r+1, column=c+1)
+              cell.value = val
+    wb.save(filename = dest_filename)
+
+with open('sg-report.csv', 'r') as f:
+    reader = csv.reader(f)
+    for r, row in enumerate(reader):
+        for c, col in enumerate(row):
+            for idx, val in enumerate(col.split(',')):
+              cell = ws7.cell(row=r+1, column=c+1)
               cell.value = val
     wb.save(filename = dest_filename)
