@@ -18,13 +18,13 @@
         aws_sg_source: "{{ sg_bucket_result | json_query('security_groups[*].ip_permissions[*].ip_ranges[*].cidr_ip') }}"
         aws_sg_description: "{{ sg_bucket_result | json_query('security_groups[*].description') }}"
 
-    # - name: 'SG | Create Jinja template about SecurityGroup in AWS'
-    #   template:
-    #     src: "{{ role_path }}/templates/SG-template.j2"
-    #     dest: "/tmp/SG-report.csv"
-    #     mode: '0644'
-    #     force: true
-    #   delegate_to: localhost
+    - name: 'SG | Create Jinja template about SecurityGroup in AWS'
+      template:
+        src: "{{ role_path }}/templates/sg-template.j2"
+        dest: "/tmp/sg-report.csv"
+        mode: '0644'
+        force: true
+      delegate_to: localhost
 
     - name: 'SG | Show success message'
       debug:
