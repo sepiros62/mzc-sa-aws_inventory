@@ -63,14 +63,13 @@ def con_style(sheetname):
     sheetname.border = default_border
     sheetname.font = ft_con_line
 
-
 # Main
 wb = Workbook()
 dest_filename = '{{ slack_file_name }}.xlsx'
 
 ws1 = wb.active
 ws1.title = 'EC2'
-ws1.sheet_properties.tabColor('#6E6E6E')
+ws1.tabColor('#6E6E6E')
 ws1['A1'] = '[AWS] EC2 Resource'
 
 ws2 = wb.create_sheet()
