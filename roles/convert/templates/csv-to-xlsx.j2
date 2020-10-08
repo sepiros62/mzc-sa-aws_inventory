@@ -145,7 +145,7 @@ with open('ec2-report.csv', 'r') as f:
             for idx, val in enumerate(col.split(',')):
               cell = ws1.cell(row=r+1, column=c+1)
               cell.value = val
-              ws.cell(row=7, column=9).border = thin_border
+              ws1.cell(row=7, column=9).border = thin_border
     wb.save(filename = dest_filename)
 
 with open('vpc-report.csv', 'r') as f:
