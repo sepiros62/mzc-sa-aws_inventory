@@ -72,7 +72,15 @@ ws1 = wb.active
 ws1.title = 'EC2'
 ws1['A1'] = '[AWS] EC2 Resource'
 ws1.sheet_properties.tabColor = "00808080"
-ws1.column_dimensions[get_column_letter(col)].auto_size = True
+ws1.column_dimensions['A'].width = "8"
+ws1.column_dimensions['B'].width = "20"
+ws1.column_dimensions['C'].width = "20"
+ws1.column_dimensions['D'].width = "13"
+ws1.column_dimensions['E'].width = "16"
+ws1.column_dimensions['F'].width = "15"
+ws1.column_dimensions['G'].width = "15"
+ws1.column_dimensions['H'].width = "25"
+ws1.column_dimensions['I'].width = "18"
 
 ws2 = wb.create_sheet()
 ws2.title = "VPC"
