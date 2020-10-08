@@ -80,7 +80,6 @@ ws1.column_dimensions['F'].width = "15"
 ws1.column_dimensions['G'].width = "15"
 ws1.column_dimensions['H'].width = "25"
 ws1.column_dimensions['I'].width = "18"
-ws1.cell(row=7, column=9).border = thin_border
 
 ws2 = wb.create_sheet()
 ws2.title = "VPC"
@@ -146,6 +145,7 @@ with open('ec2-report.csv', 'r') as f:
             for idx, val in enumerate(col.split(',')):
               cell = ws1.cell(row=r+1, column=c+1)
               cell.value = val
+              ws.cell(row=7, column=9).border = thin_border
     wb.save(filename = dest_filename)
 
 with open('vpc-report.csv', 'r') as f:
