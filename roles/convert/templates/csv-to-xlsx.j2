@@ -5,6 +5,8 @@ import sys
 
 from openpyxl import Workbook
 from openpyxl.styles import PatternFill, Border, Side, Alignment, Protection, Font
+from openpyxl.utils import get_column_letter
+
 
 bd = Side(style='thin', color="000000")
 default_border = Border(left=bd, top=bd, right=bd, bottom=bd)
@@ -68,39 +70,45 @@ dest_filename = '{{ slack_file_name }}.xlsx'
 
 ws1 = wb.active
 ws1.title = 'EC2'
-ws1.sheet_properties.tabColor = "00808080"
 ws1['A1'] = '[AWS] EC2 Resource'
-
+ws1.sheet_properties.tabColor = "00808080"
+ws1.column_dimensions[get_column_letter(col)].auto_size = True
 
 ws2 = wb.create_sheet()
 ws2.title = "VPC"
-ws2.sheet_properties.tabColor = "00FFCC99"
 ws2['A1'] = '[AWS] VPC Resource'
+ws2.sheet_properties.tabColor = "00FFCC99"
+ws2.column_dimensions[get_column_letter(col)].auto_size = True
 
 ws3 = wb.create_sheet()
 ws3.title = "S3"
-ws3.sheet_properties.tabColor = "0033CCCC"
 ws3['A1'] = '[AWS] S3 Resource'
+ws3.sheet_properties.tabColor = "0033CCCC"
+ws3.column_dimensions[get_column_letter(col)].auto_size = True
 
 ws4 = wb.create_sheet()
 ws4.title = "CF"
 ws4.sheet_properties.tabColor = "0099CC00"
 ws4['A1'] = '[AWS] CF Resource'
+ws4.column_dimensions[get_column_letter(col)].auto_size = True
 
 ws5 = wb.create_sheet()
 ws5.title = "RDS"
-ws5.sheet_properties.tabColor = "0099CCFF"
 ws5['A1'] = '[AWS] RDS Resource'
+ws5.sheet_properties.tabColor = "0099CCFF"
+ws5.column_dimensions[get_column_letter(col)].auto_size = True
 
 ws6 = wb.create_sheet()
 ws6.title = "ROUTE53"
-ws6.sheet_properties.tabColor = "009999FF"
 ws6['A1'] = '[AWS] Route53 Resource'
+ws6.sheet_properties.tabColor = "009999FF"
+ws6.column_dimensions[get_column_letter(col)].auto_size = True
 
 ws7 = wb.create_sheet()
 ws7.title = "SG"
-ws7.sheet_properties.tabColor = "00FF8080"
 ws7['A1'] = '[AWS] SecurityGroup Resource'
+ws7.sheet_properties.tabColor = "00FF8080"
+ws7.column_dimensions[get_column_letter(col)].auto_size = True
 
 with open('ec2-report.csv', 'r') as f:
     reader = csv.reader(f)
